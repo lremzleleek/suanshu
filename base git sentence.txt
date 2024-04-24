@@ -1,0 +1,12 @@
+git init
+
+git add .
+
+git commit -m "Initial commit"
+
+git remote add origin <GitHub 仓库地址>
+
+https://github.com/freebeebee/FinalProject.git
+https://github.com/lremzleleek/suanshu.git
+
+git push -u origin master
