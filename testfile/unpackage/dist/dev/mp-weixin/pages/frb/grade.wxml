@@ -1,0 +1,1 @@
+<view class="above"><view class="one">请选择您的年级</view><view class="two">便于我们为您提供最佳服务</view></view><view class="box"><view wx:for="{{a}}" wx:for-item="item" class="inner"><view class="InnerBox">{{item.a}}</view></view></view><view class="below"> 保存 </view>

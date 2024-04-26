@@ -1,0 +1,45 @@
+
+.InnerBox{
+		height: 100px;
+		width: 250px;
+		background-color:#eec866;
+		margin: 30px;
+		border-radius: 10px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+}
+.above{
+		height: 180px;
+		background-color: #eec866;
+}
+.one{
+			padding: 30px;
+			font-size: 40px;
+}
+.two{
+			padding-left: 30px ;
+			font-size: 20px;
+}
+.box{
+			overflow: ;
+			display: flex;
+			left: 10px;
+			height:300px;
+			width:100%;
+			position: relative;
+			top:50px;
+			flex-wrap:wrap;
+}
+.below{
+			display: flex;
+			position:absolute;
+			left: 15%;
+			top: 90%;
+			justify-content: center;
+			align-items: center;
+			height: 50px;
+			width: 70%;
+			border-radius: 20px;
+			background-color: #eec866;
+}
