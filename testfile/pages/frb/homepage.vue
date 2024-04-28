@@ -6,7 +6,7 @@
 				<div style="position: relative;top: 40px;">
 					<img src="../../static/calendar.png" alt="" />
 					
-					<div style="font-size: 30px; position: relative;top: 10px;">
+					<div style="font-size: 30px; position: relative;top: 10px;" @click="sign">
 						<p>签到</p>
 						<p style="font-size: 15px;">{{gettime}}</p>
 					</div>
@@ -60,6 +60,9 @@
 		
 		},
 		methods: {
+		sign(){
+			alert("签到成功")
+		},
 		GoToChoose(){
 			uni.navigateTo(
 			{

@@ -4,17 +4,44 @@
 		<image src="../../static/旗子.png"></image>
 		<text>1~5 的认识和加减法</text>
 	</view>
-	<ul class="listall">
+	<!-- <ul class="listall">
 	<li class="choice" v-for="(item,index) in questions">
+		
 		<text class="intro">{{item}}</text>
 		<text class="ex_intro">例题：5 〇 4</text>
 		<text class="ex_intro" style="margin-left: 250rpx;">已练：4次</text>
 		<view class="circle">
 			<image src="../../static/三角形.png"></image>
 		</view>
+		
 	</li>
 	
-	</ul>
+	</ul> -->
+
+<view  class="outercontainer" >
+	<uni-collapse :item-style="itemStyle" v-for="(item,index) in questions" class="out">
+				
+				<uni-collapse-item :title="item" >
+					
+					<view class="" style="display: flex; align-items: center;border-radius: 15px">
+		&nbsp;&nbsp;&nbsp;&nbsp;
+						<font style="font-size: 15px;" > 题目数量</font>
+						<uni-data-select style="width: 300px; margin-left: 30px;height: 70px; border-radius: 3px; font-size: 30px;"
+						      v-model="value"
+						      :localdata="range"
+						      @change="change"
+						    ></uni-data-select>
+						</view>
+						<br />
+						<br />
+					<view class="" style="display: flex;">
+						<div class="choice">打印题目</div> <div class="choice plus">开始练习</div>
+					</view>
+				</uni-collapse-item>
+				
+				
+			</uni-collapse>
+</view>
 
 	<view style="height: 100rpx;"></view>
 </template>
@@ -27,7 +54,15 @@
 		data(){
 			return{
 				stage:0,
-				
+				itemStyle:{
+					fontsize:"110px"
+				},
+				range:[
+				        { value: 0, text: "10" },
+				        { value: 1, text: "20" },
+				        { value: 2, text: "30" },
+						
+				      ],
 			
 				dis:[["5比大小"
 					,"5加法"
@@ -117,7 +152,24 @@
 		padding: 0px;
 		margin: 0px;
 	}
-	.listall{
+	.uni-collapse-cell__title {
+	                padding: 0;
+					
+	                margin-bottom: 30rpx;
+	            }
+	.out{
+		border: 3px solid #ffd700;
+		border-radius: 15px;
+		margin: 5px;
+		padding: 10px;
+	}
+	.outercontainer{
+		width: 90%;
+		height: 200px;
+		margin-left: 2%;
+		overflow: visible
+	}
+		.listall{
 		list-style: none;
 		padding: 0rpx;
 		margin: 0rpx;
@@ -144,12 +196,19 @@
 		/* border: 1px solid black; */
 	}
 	.choice{
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		position: relative;
-		width: 90%;
-		height: 130rpx;
+		top: -20px;
+		width: 40%;
+		height: 90rpx;
 		margin: 10px auto;
-		border: 1px solid #9A9A9A;
-		border-radius: 15rpx;
+		border: 2px solid  #ffd700;
+		border-radius: 35rpx;
+	}
+	.plus{
+		background-color: #ffd700;
 	}
 	.intro{
 		position: absolute;
