@@ -25,7 +25,7 @@ public class SplitService {
     private RandomMapper randomMapper;
     private String[] tablename=new String[4];
     private int splitNum=0;
-    private List<Object> alllist;
+    private List<Object> alllist=new ArrayList<>();
     public List<Object> selectSplit(ExerciseMsg exerciseMsg) {
         switch (exerciseMsg.getGradeId()) {
             case 1: tablename[0]="tenadd";tablename[1]="tensub";
