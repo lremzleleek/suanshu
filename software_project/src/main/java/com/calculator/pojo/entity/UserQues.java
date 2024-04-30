@@ -1,0 +1,15 @@
+package com.calculator.pojo.entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserQues {
+    private int userId;
+    private int gradeId;
+    private int quesId;
+    private boolean accuracy;
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.calculator.mapper.CompareMapper">
+    <!--resultType:单条记录所封装的类型-->
+    <select id="selectCom" resultType="com.calculator.pojo.question.Compare">
+        select * from  ${tablename} where id in
+        <foreach collection="list" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </select>
+
+<!--public interface CompareMapper {
+    @Select("select * from fivecom ORDER BY RAND() LIMIT #{quesNum}")
+    public List<Compare> selectCom(ExerciseMsg exerciseMsg,String tablename);
+}-->
+</mapper>
