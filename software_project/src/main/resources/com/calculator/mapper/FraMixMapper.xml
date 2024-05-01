@@ -5,12 +5,8 @@
 <mapper namespace="com.calculator.mapper.FraMixMapper">
     <!--resultType:单条记录所封装的类型-->
     <select id="selectFraMix" resultType="com.calculator.pojo.question.FraMix">
-        select * from  ${tablename} where id in
-        <foreach collection="list" item="id" separator="," open="(" close=")">
-            #{id}
-        </foreach>
+        select * from  ${tablename} where id= #{id}
     </select>
-
     <!--public interface CompareMapper {
         @Select("select * from fivecom ORDER BY RAND() LIMIT #{quesNum}")
         public List<Compare> selectCom(ExerciseMsg exerciseMsg,String tablename);

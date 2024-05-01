@@ -5,10 +5,7 @@
 <mapper namespace="com.calculator.mapper.MixComMapper">
     <!--resultType:单条记录所封装的类型-->
     <select id="selectMixCom" resultType="com.calculator.pojo.question.MixCom">
-        select * from  ${tablename} where id in
-        <foreach collection="list" item="id" separator="," open="(" close=")">
-            #{id}
-        </foreach>
+        select * from  ${tablename} where id=#{id}
     </select>
 
     <!--public interface CompareMapper {

@@ -1,10 +1,11 @@
 package com.calculator.service.impl;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class TableSearch {
-    public String TableSearch(int gradeId,int quesId) {
+    public static String tableSearch(int gradeId,int quesId) {
         switch (gradeId) {
             case 1:
                 switch (quesId) {

@@ -4,10 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DeleteMsg {
-    private String userId;
-    private int[] deleteId;
+public class ChangeInfo {
+    private int userId;
+    private List<ChangeMsg> list;
 }

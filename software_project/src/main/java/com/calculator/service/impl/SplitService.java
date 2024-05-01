@@ -23,10 +23,11 @@ public class SplitService {
     private SeqWithParMapper seqWithParMapper;
     @Autowired
     private RandomMapper randomMapper;
-    private String[] tablename=new String[4];
-    private int splitNum=0;
-    private List<Object> alllist=new ArrayList<>();
+
     public List<Object> selectSplit(ExerciseMsg exerciseMsg) {
+        String[] tablename=new String[4];
+        int splitNum=0;
+        List<Object> alllist=new ArrayList<>();
         switch (exerciseMsg.getGradeId()) {
             case 1: tablename[0]="tenadd";tablename[1]="tensub";
                 break;
@@ -57,16 +58,18 @@ public class SplitService {
             Integer maxNum=randomMapper.getMaxNum(tablename[i]);
             List<Integer> list=NumberUtil.randomCommon(minNum,maxNum,intList[i]);
             if(tablename[i].equals("hunaddsub")||tablename[i].equals("hunmutandiv")){
-                alllist.add(seqNoParMapper.selectSeqNoPar(exerciseMsg,tablename[i],list));
+                for (Integer integer : list) alllist.add(seqNoParMapper.selectSeqNoPar(tablename[i], integer));
             }
             else if(tablename[i].equals("hunaskuohao")||tablename[i].equals("hunmutandivkuohao")){
-                alllist.add(seqWithParMapper.selectSeqWithPar(exerciseMsg,tablename[i],list));
+                for (Integer integer : list) alllist.add(seqWithParMapper.selectSeqWithPar(tablename[i], integer));
             }
             else if(exerciseMsg.getGradeId()==1||exerciseMsg.getGradeId()==2){
-                alllist.add(dualAddMapper.selectDualAdd(exerciseMsg,tablename[i],list));
+                for (Integer integer : list) {
+                    alllist.add(dualAddMapper.selectDualAdd(tablename[i], integer));
+                }
             }
             else if(exerciseMsg.getGradeId()==5||exerciseMsg.getGradeId()==6){
-                alllist.add(dualMulMapper.selectDualMul(exerciseMsg,tablename[i],list));
+                    for (Integer integer : list) alllist.add(dualMulMapper.selectDualMul(tablename[i], integer));
             }
         }
         return alllist;

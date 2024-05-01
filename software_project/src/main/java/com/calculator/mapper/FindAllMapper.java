@@ -9,6 +9,6 @@ import java.util.List;
 
 @Mapper
 public interface FindAllMapper {
-    @Select("select * from userques where userId=#{userId} and type=#{type}")
+    @Select("select * from userques where userId=#{userId} and type=#{type} and gradeId=#{gradeId} and accuracy=0")
     public List<UserQues> findAllByUserId(FindMsg findMsg);
 }

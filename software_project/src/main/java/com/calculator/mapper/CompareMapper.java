@@ -9,5 +9,5 @@ import java.util.List;
 
 @Mapper
 public interface CompareMapper {
-    public List<Compare> selectCom(ExerciseMsg exerciseMsg,String tablename,List<Integer> list);
+    public Compare selectCom(String tablename,Integer id);
 }

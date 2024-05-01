@@ -9,6 +9,6 @@ import java.util.List;
 
 @Mapper
 public interface FraMixMapper {
-    public List<FraMix> selectFraMix(ExerciseMsg exerciseMsg, String tablename, List<Integer> list);
+    public FraMix selectFraMix(String tablename,Integer id);
 }
 

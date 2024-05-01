@@ -9,5 +9,5 @@ import java.util.List;
 
 @Mapper
 public interface DeciComMapper {
-    public List<DeciCom> selectDeciCom(ExerciseMsg exerciseMsg, String tablename, List<Integer> list);
+    public DeciCom selectDeciCom(String tablename,Integer id);
 }

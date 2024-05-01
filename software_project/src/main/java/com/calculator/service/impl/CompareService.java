@@ -8,6 +8,7 @@ import com.calculator.pojo.question.Compare;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,56 +18,23 @@ public class CompareService {
     @Autowired
     private RandomMapper randomMapper;
 
-    private String tablename;
+
     public List<Compare> selectCom(ExerciseMsg exerciseMsg) {
-        switch (exerciseMsg.getGradeId()) {
-            case 1: {
-                switch (exerciseMsg.getQuesId()) {
-                    case 1: tablename="fivecom";break;
-                    case 5: tablename="tencom";break;
-                    case 12: tablename="twecom";break;
-                }
-            }
-            break;
-            case 2: {
-                switch (exerciseMsg.getQuesId()) {
-                    case 1: tablename="huncom";break;
-                }
-            }
-            break;
-            default:return null;
-        }
-
+        String tablename=TableSearch.tableSearch(exerciseMsg.getGradeId(),exerciseMsg.getQuesId());
+        List<Compare>  list=new ArrayList<>();
         Integer minNum=randomMapper.getMinNum(tablename);
         Integer maxNum=randomMapper.getMaxNum(tablename);
-        List<Integer> list=NumberUtil.randomCommon(minNum,maxNum,exerciseMsg.getQuesNum());
-        System.out.println(list);
-        return compareMapper.selectCom(exerciseMsg,tablename,list);
-    }
-    public List<Compare> selectCom(FindMsg findMsg) {
-        switch (findMsg.getGradeId()) {
-            case 1: {
-                switch (findMsg.getQuesId()) {
-                    case 1: tablename="fivecom";break;
-                    case 5: tablename="tencom";break;
-                    case 12: tablename="twecom";break;
-                }
-            }
-            break;
-            case 2: {
-                switch (exerciseMsg.getQuesId()) {
-                    case 1: tablename="huncom";break;
-                }
-            }
-            break;
-            default:return null;
+        List<Integer> listInt =NumberUtil.randomCommon(minNum,maxNum,exerciseMsg.getQuesNum());
+        System.out.println(listInt);
+        for(Integer i: listInt){
+            list.add(compareMapper.selectCom(tablename,i));
         }
 
-        Integer minNum=randomMapper.getMinNum(tablename);
-        Integer maxNum=randomMapper.getMaxNum(tablename);
-        List<Integer> list=NumberUtil.randomCommon(minNum,maxNum,exerciseMsg.getQuesNum());
-        System.out.println(list);
-        return compareMapper.selectCom(exerciseMsg,tablename,list);
+        return list;
     }
 
+    public Compare findCom(int gradeId,int quesId,int titleId) {
+        String tablename=TableSearch.tableSearch(gradeId,quesId);
+            return compareMapper.selectCom(tablename,titleId);
+    }
 }

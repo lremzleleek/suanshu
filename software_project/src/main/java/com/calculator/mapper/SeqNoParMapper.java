@@ -9,6 +9,6 @@ import java.util.List;
 
 @Mapper
 public interface SeqNoParMapper {
-    public List<SeqNoPar> selectSeqNoPar(ExerciseMsg exerciseMsg, String tablename, List<Integer> list);
+    public SeqNoPar selectSeqNoPar(String tablename,Integer id);
 }
 
