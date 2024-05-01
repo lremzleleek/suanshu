@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class FraMix {
+public class FraMix extends AllQues{
+    private int id;
     private String div1;
     private String div2;
     private String div3;

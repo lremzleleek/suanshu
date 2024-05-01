@@ -39,12 +39,5 @@ public class SplitUtil {
         return result;
     }
 
-    public static void main(String[] args) {
-        int total = 100;
-        int numParts = 5;
-        int[] parts = splitIntoParts(total, numParts);
-        for (int part : parts) {
-            System.out.println(part);
-        }
-    }
+
 }

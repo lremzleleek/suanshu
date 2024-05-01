@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class InsertMsg {
-    private String userId;
-    private int insertId;
+public class InsertAccuMsg {
+    private Integer id;
+    private String userResult;
+    private boolean accuracy;
 }

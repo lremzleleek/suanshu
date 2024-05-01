@@ -7,9 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Compare {
-    private short num1;
-    private short num2;
+public class Compare extends AllQues{
+    private int id;
+    private int num1;
+    private int num2;
     private String symbol1;
 }
 //一年级上：5比大小、10比大小、20比大小 3

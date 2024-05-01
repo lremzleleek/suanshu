@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DualAdd {
+public class DualAdd extends AllQues{
+    private int id;
     private int num1;
     private int num2;
     private String symbol1;
