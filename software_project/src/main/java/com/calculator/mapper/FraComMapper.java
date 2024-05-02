@@ -9,6 +9,6 @@ import java.util.List;
 
 @Mapper
 public interface FraComMapper {
-    public List<FraCom> selectFraCom(ExerciseMsg exerciseMsg, String tablename, List<Integer> list);
+    public FraCom selectFraCom(String tablename,Integer id);
 }
 

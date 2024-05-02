@@ -5,10 +5,7 @@
 <mapper namespace="com.calculator.mapper.SeqNoParMapper">
     <!--resultType:单条记录所封装的类型-->
     <select id="selectSeqNoPar" resultType="com.calculator.pojo.question.SeqNoPar">
-        select * from  ${tablename} where id in
-        <foreach collection="list" item="id" separator="," open="(" close=")">
-            #{id}
-        </foreach>
+        select * from  ${tablename} where id=#{id}
     </select>
 
     <!--public interface CompareMapper {

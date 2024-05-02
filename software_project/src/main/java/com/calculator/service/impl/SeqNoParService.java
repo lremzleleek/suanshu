@@ -3,10 +3,13 @@ package com.calculator.service.impl;
 import com.calculator.mapper.RandomMapper;
 import com.calculator.mapper.SeqNoParMapper;
 import com.calculator.pojo.message.ExerciseMsg;
+import com.calculator.pojo.question.Compare;
+import com.calculator.pojo.question.FraAdd;
 import com.calculator.pojo.question.SeqNoPar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,31 +19,22 @@ public class SeqNoParService{
     @Autowired
     private RandomMapper randomMapper;
 
-    private String tablename;
+
     public List<SeqNoPar> selectSeqNoPar(ExerciseMsg exerciseMsg) {
-        switch (exerciseMsg.getGradeId()) {
-            case 1: tablename="tenaddsub";
-            break;
-            case 3: {
-                switch (exerciseMsg.getQuesId()) {
-                    case 5: tablename="hubaddsub";break;
-                    case 8: tablename="mutaddsub";break;   //舍去
-                }
-            }
-            break;
-            case 4: {
-                switch (exerciseMsg.getQuesId()) {
-                    case 2: tablename="hubaddsub";break;
-                    case 4: tablename="hunmutandiv";break;
-                }
-            }
-            break;
-            default:return null;
-        }
+        String tablename=TableSearch.tableSearch(exerciseMsg.getGradeId(),exerciseMsg.getQuesId());
+        List<SeqNoPar>  list=new ArrayList<>();
         Integer minNum=randomMapper.getMinNum(tablename);
         Integer maxNum=randomMapper.getMaxNum(tablename);
-        List<Integer> list=NumberUtil.randomCommon(minNum,maxNum,exerciseMsg.getQuesNum());
-        System.out.println(list);
-        return seqNoParMapper.selectSeqNoPar(exerciseMsg,tablename,list);
+        List<Integer> listInt =NumberUtil.randomCommon(minNum,maxNum,exerciseMsg.getQuesNum());
+        System.out.println(listInt);
+        for(Integer i: listInt){
+            list.add(seqNoParMapper.selectSeqNoPar(tablename,i));
+        }
+
+        return list;
+    }
+    public SeqNoPar findSeqNoPar(int gradeId, int quesId, int titleId) {
+        String tablename=TableSearch.tableSearch(gradeId,quesId);
+        return seqNoParMapper.selectSeqNoPar(tablename,titleId);
     }
 }

@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DeleteMsg {
-    private String userId;
-    private int[] deleteId;
+public class ChangeMsg {
+    private int userId;
+    private int gradeId;
+    private int quesId;
+    private int type;
 }

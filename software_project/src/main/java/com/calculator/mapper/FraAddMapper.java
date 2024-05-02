@@ -9,6 +9,6 @@ import java.util.List;
 
 @Mapper
 public interface FraAddMapper {
-    public List<FraAdd> selectFraAdd(ExerciseMsg exerciseMsg, String tablename, List<Integer> list);
+    public FraAdd selectFraAdd(String tablename,Integer id);
 }
 

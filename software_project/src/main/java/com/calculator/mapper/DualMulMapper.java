@@ -9,5 +9,5 @@ import java.util.List;
 
 @Mapper
 public interface DualMulMapper {
-    public List<DualMul> selectDualMul(ExerciseMsg exerciseMsg, String tablename, List<Integer> list);
+    public DualMul selectDualMul(String tablename,Integer id);
 }

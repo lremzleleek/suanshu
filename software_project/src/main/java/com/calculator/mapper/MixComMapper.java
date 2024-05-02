@@ -9,6 +9,6 @@ import java.util.List;
 
 @Mapper
 public interface MixComMapper {
-    public List<MixCom> selectMixCom(ExerciseMsg exerciseMsg, String tablename, List<Integer> list);
+    public MixCom selectMixCom(String tablename,Integer id);
 }
 

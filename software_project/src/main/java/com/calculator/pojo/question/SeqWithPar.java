@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SeqWithPar {
+public class SeqWithPar extends AllQues{
+    private int id;
     private int num1; //10  40
     private int num2; //2   5
     private int num3; //1   1

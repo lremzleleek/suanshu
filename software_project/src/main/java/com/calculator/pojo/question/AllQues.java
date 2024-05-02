@@ -5,11 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class Fraction {
-    private int num1;
-    private int num2;
-    private String symbol;
-
+@NoArgsConstructor
+public class AllQues {
+    private int id;
 }

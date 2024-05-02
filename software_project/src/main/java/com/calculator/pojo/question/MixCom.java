@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class MixCom {
+public class MixCom extends AllQues{
+    private int id;
     private int num1;
     private String symbol1;      //原为symbol
     private int num2;
