@@ -1,0 +1,48 @@
+{
+  "pages": [
+    "pages/frb/homepage",
+    "pages/test/test",
+    "pages/frb/myself",
+    "pages/frb/name",
+    "pages/frb/school",
+    "pages/frb/grade",
+    "pages/frb/icon",
+    "pages/frb/calendar"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8",
+    "rpxCalcMaxDeviceWidth": 1024,
+    "rpxCalcBaseDeviceWidth": 375,
+    "rpxCalcIncludeWidth": 750
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/frb/homepage",
+        "iconPath": "static/iogo.png",
+        "selectedIconPath": "static/logo.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/test/test",
+        "iconPath": "static/iogo.png",
+        "selectedIconPath": "static/logo.png",
+        "text": "错题本"
+      },
+      {
+        "pagePath": "pages/frb/myself",
+        "iconPath": "static/iogo.png",
+        "selectedIconPath": "static/logo.png",
+        "text": "组件"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

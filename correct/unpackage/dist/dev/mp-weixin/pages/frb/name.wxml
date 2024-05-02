@@ -1,0 +1,1 @@
+<view class="above"><label class="name">昵称:</label><input type="text" placeholder="  请输入昵称"/></view><view class="below"> 保存 </view>
