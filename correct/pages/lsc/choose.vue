@@ -72,7 +72,7 @@
 		},
 		data(){
 			return{
-				kind:1,
+				kind:0,
 				stage:0,
 				itemStyle:{
 					fontsize:"110px"

@@ -1,6 +1,6 @@
 <template>
 	<ul class="top" style="display: flex; justify-content: center;">
-	<!-- <li class="accuracy">正确率:96%</li> -->
+	<li class="accuracy">得分{{score}}</li>
 	<li class="ques_num_box">
 		<text class="ques_num">{{index+1}}/{{totalq}}题</text>
 		</li>
@@ -36,20 +36,45 @@
 		data() {
 			return {
 				dis: '〇',
-				dis1:1,//展现在屏幕上的第一个问题
-				dis2:2,
+				dis1:'',//展现在屏幕上的第一个问题
+				dis2:'',
 				answerlist:[],//用户回答的结果
-				answer:[],//标准答案
+				correct:[],//用户的答案正确与否
+				receive:[],//获取的数据
 				score:0,
-				content1:[1,2,3],
-				content2:[3,4,5],
+				content1:[],
+				content2:[],
 				index:0,
 				totalq:3,
 				
 			}
 		},
 		onLoad() {
-		
+		uni.request({
+		  url: 'http://localhost:8080/exercise',
+		  method: 'POST',
+		  header: {
+		    'content-type': 'application/json'
+		  },
+		  data: {
+				"userId": 1234,
+		       "gradeId":1,
+		       "quesId":1,
+		       "quesNum":19
+		  },
+		  success: res => {
+		    console.log(res.data)
+			this.receive=res.data.data
+			this.totalq=this.receive.length
+			this.dis1=this.receive[this.index].num1
+			this.dis2=this.receive[this.index].num2
+			console.log()
+		  },
+		  fail: err => {
+		    console.log("fail")
+		  }
+		}) 
+	
 		},
 		methods: {
 		compare(){
@@ -59,17 +84,21 @@
 			else{
 				this.index=this.index+1;
 				// this.answerlist.add("this.dis")
-				console.log(this.index)
-				this.dis1=this.content1[this.index]
-				this.dis2=this.content2[this.index]
+				console.log()
+				this.dis1=this.receive[this.index-1].num1
+				this.dis2=this.receive[this.index-1].num2
 				if(this.index==this.totalq){
 					
 					// uni.navigateTo({
 					// 	url:"/pages/lsc/result"
 					// })
 				};
-				if(this.dis==this.answer[index-1]){
+				if(this.dis==this.receive[index-1].symbol){
 					score+=1
+					correct.add(1)
+				}
+				else{
+					correct.add(0)
 				}
 			}
 			

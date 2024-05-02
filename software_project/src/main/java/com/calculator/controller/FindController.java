@@ -5,6 +5,7 @@ import com.calculator.pojo.message.Result;
 import com.calculator.service.impl.FindJudgeService;
 import com.calculator.service.impl.FindService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class FindController {
 @Autowired
     private FindJudgeService findJudgeService;
