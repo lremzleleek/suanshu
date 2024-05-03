@@ -59,9 +59,9 @@
 		  },
 		  data: {
 				"userId": 1234,
-		       "gradeId":1,
-		       "quesId":8,
-		       "quesNum":this.$route.query.num
+		       "gradeId":this.$route.query.grade,
+		       "quesId":this.$route.query.id,
+		       "quesNum":2
 		  },
 		  success: res => {
 		    console.log(res.data)
@@ -83,29 +83,68 @@
 				alert("请输入答案")
 			}
 			else{
-				
+				this.answerlist.push("this.dis")
+				if(this.index>=this.totalq-1){
+					
+					if(this.dis==this.receive[this.index].symbol1){
+						alert("回答正确")
+						this.score+=1
+						this.correct.push(1)
+					}
+					else{
+						alert("错了，正确答案是"+this.receive[this.index].symbol1)
+						this.correct.push(0)
+					}
+					//答题完毕向后端传递数据
+					uni.request({
+					  url: 'http://localhost:8080/exercise',
+					  method: 'POST',
+					  header: {
+					    'content-type': 'application/json'
+					  },
+					  data: {
+							"userId": 1234,
+					       "gradeId":this.$route.query.grade,
+					       "quesId":this.$route.query.id,
+					       "quesNum":2
+					  }, 
+					  success: res => {
+					    console.log(res.data)
+						this.receive=res.data.data
+						this.totalq=this.receive.length
+						this.dis1=this.receive[this.index].num1
+						this.dis2=this.receive[this.index].num2
+						console.log()
+					  },
+					  fail: err => {
+					    console.log("fail")
+					  }
+					}) 
+					alert("答题完毕")
+					uni.switchTab({
+						url:"/pages/frb/homepage"
+					})
+				};
+				//这边是正常答题的时候
 				this.index=this.index+1;
-				// this.answerlist.add("this.dis")
 				
 				this.dis1=this.receive[this.index].num1
 				this.dis2=this.receive[this.index].num2
-				if(this.index==this.totalq){
-					
-					uni.navigateTo({
-						url:"/pages/lsc/result"
-					})
-				};
+				console.log(this.index)
+				console.log(this.totalq)
+				
 				
 				console.log(this.receive[this.index-1].symbol1)
 				if(this.dis==this.receive[this.index-1].symbol1){
-					alert("correct")
+					alert("回答正确")
 					this.score+=1
-					correct.add(1)
+					this.correct.push(1)
 				}
 				else{
 					alert("错了，正确答案是"+this.receive[this.index-1].symbol1)
-					correct.add(0)
+					this.correct.push(0)
 				}
+				
 			}
 			
 		},

@@ -38,7 +38,7 @@
 						<br />
 						<br />
 					<view class="" style="display: flex;">
-						<div class="choice">打印题目</div> <div class="choice plus" @click="start">开始练习</div>
+						<div class="choice">打印题目</div> <div class="choice plus" @click="start(index)">开始练习</div>
 					</view>
 				</uni-collapse-item>
 				
@@ -58,11 +58,11 @@
 			change(e){
 				console.log(e)
 			},
-			start(){
-				var data=[{a:'123',b:'456'},{a:'444',b:'666'}]
+			start(index){
+				index=index+1;
 				if(this.kind==0){
 					uni.navigateTo({
-						url:"/pages/lsc/compare?id=123&num="+this.value.toString()
+						url:"/pages/lsc/compare?grade="+this.value2.toString()+"&num="+this.value.toString()+"&id="+index.toString()
 					})
 				}
 				if(this.kind==1){
