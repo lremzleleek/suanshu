@@ -2,7 +2,10 @@
 		<!--0~5 的认识和加减法-->
 	<view class="unit">
 		<image src="../../static/旗子.png"></image>
-		<text>1~5 的认识和加减法</text>
+		<text>修改年级</text> 
+		<uni-data-select style="width: 100px;" v-model="value2"
+						      :localdata="grade"
+						      @change="change2"></uni-data-select>
 	</view>
 	<!-- <ul class="listall">
 	<li class="choice" v-for="(item,index) in questions">
@@ -52,10 +55,14 @@
 			console.log(this.questions)
 		},
 		methods:{
+			change(e){
+				console.log(e)
+			},
 			start(){
+				var data=[{a:'123',b:'456'},{a:'444',b:'666'}]
 				if(this.kind==0){
 					uni.navigateTo({
-						url:"/pages/lsc/compare"
+						url:"/pages/lsc/compare?id=123&num="+this.value.toString()
 					})
 				}
 				if(this.kind==1){
@@ -68,19 +75,30 @@
 						url:"/pages/lsc/row_cal"
 					})
 				}
+			
 			}
 		},
+		
 		data(){
 			return{
+				value2:1,
+				grade:[{value:1,text:"一年级上"},
+				{value:2,text:"一年级下"},
+				{value:3,text:"二年级上"},
+				{value:4,text:"二年级下"},
+				{value:5,text:"三年级上"},
+				{value:6,text:"三年级下"}],
+				value:10,
+				trans:[1,2],
 				kind:0,
 				stage:0,
 				itemStyle:{
 					fontsize:"110px"
 				},
 				range:[
-				        { value: 0, text: "10" },
-				        { value: 1, text: "20" },
-				        { value: 2, text: "30" },
+				        { value: 10, text: "10" },
+				        { value: 20, text: "20" },
+				        { value: 30, text: "30" },
 						
 				      ],
 			
@@ -203,7 +221,7 @@
 		height:35rpx;
 		margin: 30px auto;
 		margin-bottom: 0px;
-		
+		display: flex;
 /* 		border: 1px solid red; */
 	}
 	.unit image{

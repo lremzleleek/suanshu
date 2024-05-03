@@ -49,7 +49,8 @@
 				
 			}
 		},
-		onLoad() {
+		onLoad(option) {
+			console.log(this.$route.query.num)
 		uni.request({
 		  url: 'http://localhost:8080/exercise',
 		  method: 'POST',
@@ -59,8 +60,8 @@
 		  data: {
 				"userId": 1234,
 		       "gradeId":1,
-		       "quesId":1,
-		       "quesNum":19
+		       "quesId":8,
+		       "quesNum":this.$route.query.num
 		  },
 		  success: res => {
 		    console.log(res.data)
@@ -82,29 +83,35 @@
 				alert("请输入答案")
 			}
 			else{
+				
 				this.index=this.index+1;
 				// this.answerlist.add("this.dis")
-				console.log()
-				this.dis1=this.receive[this.index-1].num1
-				this.dis2=this.receive[this.index-1].num2
+				
+				this.dis1=this.receive[this.index].num1
+				this.dis2=this.receive[this.index].num2
 				if(this.index==this.totalq){
 					
-					// uni.navigateTo({
-					// 	url:"/pages/lsc/result"
-					// })
+					uni.navigateTo({
+						url:"/pages/lsc/result"
+					})
 				};
-				if(this.dis==this.receive[index-1].symbol){
-					score+=1
+				
+				console.log(this.receive[this.index-1].symbol1)
+				if(this.dis==this.receive[this.index-1].symbol1){
+					alert("correct")
+					this.score+=1
 					correct.add(1)
 				}
 				else{
+					alert("错了，正确答案是"+this.receive[this.index-1].symbol1)
 					correct.add(0)
 				}
 			}
 			
 		},
 		xiao(){
-			this.dis='<'			
+			this.dis='<'
+			
 		},
 	deng(){
 		this.dis='='			

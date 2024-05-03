@@ -57,7 +57,7 @@
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter-test</artifactId>
             <version>3.0.3</version>
-            <scope>test</scope>
+            <scope>test</scope>asdjhshhiop;hasdlkhlkhkjhkjhjkasjajahdsjkl
         </dependency>
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>

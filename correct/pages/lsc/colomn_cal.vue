@@ -2,7 +2,7 @@
 	<ul class="top">
 	<li class="accuracy">正确率:96%</li>
 	<li class="ques_num_box">
-		<text class="ques_num">1/10题</text>
+		<text class="ques_num">3/10题</text>
 		</li>
 	<li class="timer">
 		<image src="../../static/闹钟.png"></image>
@@ -23,27 +23,27 @@
 	
 	<ul class="calculator">
 		<li class="row">
-			<li class="num_button">7</li>
-			<li class="num_button">8</li>
-			<li class="num_button">9</li>
+			<li class="num_button" @click="click7">7</li>
+			<li class="num_button" @click="click8">8</li>
+			<li class="num_button" @click="click9">9</li>
 			<li class="sym_button">＋</li>
 		</li>
 		<li class="row">
-			<li class="num_button">4</li>
-			<li class="num_button">5</li>
-			<li class="num_button">6</li>
+			<li class="num_button" @click="click4">4</li>
+			<li class="num_button" @click="click5">5</li>
+			<li class="num_button" @click="click6">6</li>
 			<li class="sym_button">－</li>
 		</li>
 		<li class="row">
-			<li class="num_button">1</li>
-			<li class="num_button">2</li>
-			<li class="num_button">3</li>
+			<li class="num_button" @click="click1">1</li>
+			<li class="num_button" @click="click2">2</li>
+			<li class="num_button" @click="click3">3</li>
 			<li class="sym_button">×</li>
 		</li>
 		<li class="row">
-			<li class="sym_button">·</li>
-			<li class="sym_button">←</li>
-			<li class="num_button">0</li>
+			<li class="sym_button" @click="clickd">·</li>
+			<li class="sym_button" @click="dele">←</li>
+			<li class="num_button" @click="click0">0</li>
 			<li class="sym_button">÷</li>
 		</li>
 	</ul>
@@ -57,7 +57,56 @@
 </template>
 
 <script>
-	
+	export default{
+		data(){
+			return{
+				result:"2"
+			}
+		},
+		methods:{
+			dele(){
+				 this.result=this.result.slice(0,-1)
+			},
+			clickd(){
+				this.result=this.result+"."
+			},
+			click0(){
+				this.result=this.result+"0"
+			},
+			click1(){
+				this.result=this.result+"1"
+			},
+			click2(){
+				this.result=this.result+"2"
+			},
+			click3(){
+				this.result=this.result+"3"
+			},
+			
+			click4(){
+				this.result=this.result+"4"
+			},
+			click5(){
+				this.result=this.result+"5"
+			}
+			,
+			click6(){
+				this.result=this.result+"6"
+			}
+			,
+			click7(){
+				this.result=this.result+"7"
+			}
+			,
+			click8(){
+				this.result=this.result+"8"
+			}
+			,
+			click9(){
+				this.result=this.result+"9"
+			}
+		}
+	}
 </script>
 
 <style>
