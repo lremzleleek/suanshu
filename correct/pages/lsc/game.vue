@@ -1,17 +1,17 @@
 <template>
 	<ul class="top">
-	<li class="combo">COMBO <text style="font-size: 40rpx;">1</text></li>
+	<li class="combo">伤害::<text style="font-size: 40rpx;">{{score*10}}</text></li>
 	<li class="ques_num_box">
 		<text class="ques_num">第一关</text>
 		</li>
 	<li class="timer">
 		<image src="../../static/闹钟.png"></image>
-		<text>05:00</text>
+		<text>{{countdown}}</text>
 		</li>
 	</ul>
 	
 	<view class="current_ques">
-		10 - 9 = {{result}}
+		10 - 9 = {{dis}}
 	</view>
 
 	<view class="cal_n_right">
@@ -20,35 +20,39 @@
 			<li class="num_button" @click="click7">7</li>
 			<li class="num_button" @click="click8">8</li>
 			<li class="num_button" @click="click9">9</li>
-			<li class="sym_button">＋</li>
+			<!-- <li class="sym_button">＋</li> -->
 		</li>
 		<li class="row">
 			<li class="num_button" @click="click4">4</li>
 			<li class="num_button" @click="click5">5</li>
 			<li class="num_button" @click="click6">6</li>
-			<li class="sym_button">－</li>
+			<!-- <li class="sym_button">－</li> -->
 		</li>
 		<li class="row">
 			<li class="num_button" @click="click1">1</li>
 			<li class="num_button" @click="click2">2</li>
 			<li class="num_button" @click="click3">3</li>
-			<li class="sym_button">×</li>
+			<!-- <li class="sym_button">×</li> -->
 		</li>
 		<li class="row">
 			<li class="sym_button" @click="clickd">·</li>
 			<li class="sym_button" @click="dele">←</li>
 			<li class="num_button" @click="click0">0</li>
-			<li class="sym_button">÷</li>
+			<!-- <li class="sym_button">÷</li> -->
 		</li>
 	</ul>
 	<ul class="right">
-		<li class="right_button">提示</li>
-		<li class="right_button">确定</li>
+		<!-- <li class="right_button">提示</li> -->
+		<li class="right_button" @click="handleClick">确定</li>
 	</ul>
 	</view>
 	
 	<view class="game">
-		<canvas id="canvas"></canvas>
+		<img src="../../static/闹钟.png" alt="???" />
+		<!-- <embed src="../../static/success.MP4" height="360rpx" width="100%"/> -->
+		<div :class="animate">hello world</div>
+		<img src="../../static/闹钟.png" alt="???" />
+		<div :class="damage">-10</div>
 	</view>
 	
 </template>
@@ -57,50 +61,126 @@
 	export default{
 		data(){
 			return{
-				result:"2"
+				countdown:60,
+				dis:"2",
+				score:0,
+				damage:{
+					transition: true,
+					before:true,
+					after:false
+				},
+				animate: {
+				        transition: true,
+				        green: true,
+				        pink: false,
+						left:0
+				      }
+				    
 			}
 		},
+		onLoad() {
+			this.countdown = 10; //赋值3秒
+			// const times = setInterval(() => {
+			//   this.countdown--; //递减
+			//   if (this.countdown === 0) {
+			//     // === 0 变成获取按钮
+			//     alert("答题完毕")
+			//     uni.switchTab({
+			//     	url:"/pages/frb/homepage"
+			//     })
+			//   }
+			// }, 1000);
+		},
 		methods:{
+			 compare(){
+				 console.log(this.answerlist)
+				 this.answerlist.push(this.dis)
+				 if(this.index>=this.totalq-1){
+				 	
+				 	if(this.dis==this.receive[this.index].symbol1){
+				 		alert("回答正确")
+				 		this.score+=1
+				 		this.correct.push(1)
+				 	}
+				 	else{
+				 		alert("错了，正确答案是"+this.receive[this.index].symbol1)
+				 		this.correct.push(0)
+				 	}
+				 	//答题完毕向后端传递数据
+				 	uni.request({
+				 	  url: 'http://localhost:8080/insert',
+				 	  method: 'POST',
+				 	  header: {
+				 	    'content-type': 'application/json'
+				 	  },
+				 	  data: {
+				 			"userId": 1234,
+				 	       "gradeId":this.$route.query.grade,
+				 	       "quesId":this.$route.query.id,
+				 	       "list":this.receive,
+				 		   "userdis":this.answerlist,
+				 		   "accuracy":this.correct,
+				 		   "type":3
+				 	  }, 
+				 	  success: res => {
+				 	    console.log(res.data)
+				 		this.receive=res.data.data
+				 		this.totalq=this.receive.length
+				 		this.dis1=this.receive[this.index].num1
+				 		this.dis2=this.receive[this.index].num2
+				 		console.log()
+				 	  },
+				 	  fail: err => {
+				 	    console.log("fail")
+				 	  }
+				 	}) 
+			 }},
+			handleClick() {
+			      this.animate.green = !this.animate.green
+			      this.animate.pink = !this.animate.pink
+				  this.damage.before=!this.damage.before
+				  this.damage.after=!this.damage.after
+			    },
 			dele(){
-				 this.result=this.result.slice(0,-1)
+				 this.dis=this.dis.slice(0,-1)
 			},
 			clickd(){
-				this.result=this.result+"."
+				this.dis=this.dis+"."
 			},
 			click0(){
-				this.result=this.result+"0"
+				this.dis=this.dis+"0"
 			},
 			click1(){
-				this.result=this.result+"1"
+				this.dis=this.dis+"1"
 			},
 			click2(){
-				this.result=this.result+"2"
+				this.dis=this.dis+"2"
 			},
 			click3(){
-				this.result=this.result+"3"
+				this.dis=this.dis+"3"
 			},
 			
 			click4(){
-				this.result=this.result+"4"
+				this.dis=this.dis+"4"
 			},
 			click5(){
-				this.result=this.result+"5"
+				this.dis=this.dis+"5"
 			}
 			,
 			click6(){
-				this.result=this.result+"6"
+				this.dis=this.dis+"6"
 			}
 			,
 			click7(){
-				this.result=this.result+"7"
+				this.dis=this.dis+"7"
 			}
 			,
 			click8(){
-				this.result=this.result+"8"
+				this.dis=this.dis+"8"
 			}
 			,
 			click9(){
-				this.result=this.result+"9"
+				this.dis=this.dis+"9"
 			}
 		}
 	}
@@ -110,6 +190,47 @@
 	*{
 		padding: 0px;
 		margin: 0px;
+	}
+	.before{
+		position: absolute;
+		left: 530px;
+		visibility: hidden;
+	}
+	.after{
+		position: absolute;
+		left: 530px;
+		font-size: 40px;
+		color: red;
+	}
+	.pink {
+	  background-color: pink;
+	  width: 100px;
+	  height: 50px;
+	  position: relative;
+	  left: -100px;
+	}
+	.green {
+	  background-color: yellow;
+	  width: 100px;
+	  height: 50px;
+	   position: relative;
+	  left: 100px;
+	}
+	.transition {
+	  transition: 0.5s ease;
+	}
+	#box {
+	   margin: 20px;
+	               width: 200px;
+	               height: 200px;
+	               background-color: orange;
+	               position: relative;
+	               left: 0px;
+	 
+	}
+	#box:hover {
+	     left: 600px;
+	    transition: left 5s linear 0s;
 	}
 	.top{
 		display: flex;
@@ -209,6 +330,8 @@
 	}
 	
 	.game{
+		display: flex;
+		justify-content: space-between;
 		width: 100%;
 		height: 360rpx;
 		border: 1px solid red;

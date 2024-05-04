@@ -111,7 +111,31 @@
 			}
 		},
 		onLoad() {
-	
+			uni.request({
+			  url: 'http://localhost:8080/find',
+			  method: 'POST',
+			  header: {
+			    'content-type': 'application/json'
+			  },
+			  data: {
+					"userId": 1234,
+			       "gradeId":this.$route.query.grade,
+			       "quesId":this.$route.query.id,
+			       
+				   "type":3
+			  }, 
+			  success: res => {
+			    console.log(res.data)
+				this.receive=res.data.data
+				this.totalq=this.receive.length
+				this.dis1=this.receive[this.index].num1
+				this.dis2=this.receive[this.index].num2
+				console.log()
+			  },
+			  fail: err => {
+			    console.log("fail")
+			  }
+			}) 
 		},
 		methods: {
 	

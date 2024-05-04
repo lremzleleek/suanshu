@@ -61,7 +61,7 @@
 				"userId": 1234,
 		       "gradeId":this.$route.query.grade,
 		       "quesId":this.$route.query.id,
-		       "quesNum":2
+		       "quesNum":this.$route.query.num
 		  },
 		  success: res => {
 		    console.log(res.data)
@@ -83,7 +83,8 @@
 				alert("请输入答案")
 			}
 			else{
-				this.answerlist.push("this.dis")
+				console.log(this.answerlist)
+				this.answerlist.push(this.dis)
 				if(this.index>=this.totalq-1){
 					
 					if(this.dis==this.receive[this.index].symbol1){
@@ -97,7 +98,7 @@
 					}
 					//答题完毕向后端传递数据
 					uni.request({
-					  url: 'http://localhost:8080/exercise',
+					  url: 'http://localhost:8080/insert',
 					  method: 'POST',
 					  header: {
 					    'content-type': 'application/json'
@@ -106,7 +107,10 @@
 							"userId": 1234,
 					       "gradeId":this.$route.query.grade,
 					       "quesId":this.$route.query.id,
-					       "quesNum":2
+					       "list":this.receive,
+						   "userResult":this.answerlist,
+						   "accuracy":this.correct,
+						   "type":3
 					  }, 
 					  success: res => {
 					    console.log(res.data)
@@ -130,8 +134,7 @@
 				
 				this.dis1=this.receive[this.index].num1
 				this.dis2=this.receive[this.index].num2
-				console.log(this.index)
-				console.log(this.totalq)
+				
 				
 				
 				console.log(this.receive[this.index-1].symbol1)

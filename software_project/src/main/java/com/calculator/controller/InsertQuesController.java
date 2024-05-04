@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class InsertQuesController {
     @Autowired
     private InsertQuesService insertQuesService;
-    @RequestMapping("insert")
+    @RequestMapping("/insert")
     public Result insertQues(@RequestBody InsertQuesMsg insertQuesMsg) {
         if(insertQuesService.InsertQues(insertQuesMsg))
             return Result.success(insertQuesMsg);
