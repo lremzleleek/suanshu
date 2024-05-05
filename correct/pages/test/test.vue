@@ -3,7 +3,7 @@
 	<view class="above">
 		<p>年级</p>
 		<uni-data-select
-		      v-model="value"
+		      v-model="value1"
 		      :localdata="grade"
 		      @change="change"
 			  style="background-color: white;"
@@ -11,7 +11,7 @@
 			</uni-data-select>
 	<p>题型</p>
 	<uni-data-select
-	      v-model="value"
+	      v-model="value2"
 	      :localdata="type"
 	      @change="change"
 		  style="background-color: white;"
@@ -32,47 +32,13 @@
 				<uni-th align="left">正确答案</uni-th>
 			</uni-tr>
 			<!-- 表格数据行 -->
-			<uni-tr>
-				<uni-td>2020-10-20</uni-td>
-				<uni-td>Jeson</uni-td>
-				<uni-td>北京市海淀区</uni-td>
-			</uni-tr>
-			<uni-tr>
-				<uni-td>2020-10-21</uni-td>
-				<uni-td>HanMeiMei</uni-td>
-				<uni-td>北京市海淀区</uni-td>
-			</uni-tr>
-			<uni-tr>
-				<uni-td>2020-10-22</uni-td>
-				<uni-td>LiLei</uni-td>
-				<uni-td>北京市海淀区</uni-td>
-			</uni-tr>
-			<uni-tr>
-				<uni-td>2020-10-23</uni-td>
-				<uni-td>Danner</uni-td>
-				<uni-td>北京市海淀区</uni-td>
-			</uni-tr>
-		<uni-tr>
-			<uni-td>2020-10-20</uni-td>
-			<uni-td>Jeson</uni-td>
-			<uni-td>北京市海淀区</uni-td>
-		</uni-tr>
-		<uni-tr>
-			<uni-td>2020-10-21</uni-td>
-			<uni-td>HanMeiMei</uni-td>
-			<uni-td>北京市海淀区</uni-td>
 			
-		</uni-tr>
-		<uni-tr>
-			<uni-td>2020-10-22</uni-td>
-			<uni-td>LiLei</uni-td>
-			<uni-td>北京市海淀区</uni-td>
-		</uni-tr>
-		<uni-tr>
-			<uni-td>2020-10-23</uni-td>
-			<uni-td>Danner</uni-td>
-			<uni-td>北京市海淀区</uni-td>
-		</uni-tr>
+			<uni-tr  v-for="(item,index) in display">
+				<uni-td >{{item.content}}</uni-td>
+				<uni-td>{{item.youranswer}}</uni-td>
+				<uni-td>{{item.rightanswer}}</uni-td>
+			</uni-tr>
+			
 		
 		</uni-table>
 
@@ -91,7 +57,8 @@
 		data() {
 			return {
 				grade:["一年级上","一年级下","二年级上","二年级下","三年级上","三年级下"],
-				 value: 1,
+				 value1:null,
+				 value2:null,
 				      grade: [
 				        { value: 0, text: "一年级上" },
 				        { value: 1, text: "一年级下" },
@@ -108,13 +75,90 @@
 					  	{ value: 4, text: "三年级上" },
 					  	{ value: 5, text: "三年级下" }
 					  ],
+					  display:[
+						
+					  ]
+					 
 			}
 		},
 		onLoad() {
-	
+			uni.request({
+			  url: 'http://localhost:8080/find',
+			  method: 'POST',
+			  header: {
+			    'content-type': 'application/json'
+			  },
+			  data: {
+					"userId": 1234,
+			       "gradeId":1,
+				   "type":3
+			  }, 
+			  success: res => {
+			    console.log(res.data)
+				this.receive=res.data.data
+				this.totalq=this.receive.length
+				
+				for(let i=0; i<this.receive.length;i++){
+					let arr=Object.values(this.receive[i])
+					let tep={content:"",
+						  youranswer:"",
+						  rightanswer:""}
+					tep.content=arr[0]
+					tep.youranswer=arr[1]
+					tep.rightanswer=arr[2]
+					this.display.push(tep)
+					
+		
+				}
+				console.log(this.display[0])
+				
+			  },
+			  fail: err => {
+			    console.log("fail")
+			  }
+			}) 
 		},
 		methods: {
-	
+			change(){
+				console.log(this.value1)
+				console.log(this.value2)
+				uni.request({
+				  url: 'http://localhost:8080/find',
+				  method: 'POST',
+				  header: {
+				    'content-type': 'application/json'
+				  },
+				  data: {
+						"userId": 1234,
+				       "gradeId":this.value1,
+					   "type":this.value2
+				  }, 
+				  success: res => {
+				    console.log(res.data)
+					this.display=[null]
+					this.receive=res.data.data
+					this.totalq=this.receive.length
+					
+					for(let i=0; i<this.receive.length;i++){
+						let arr=Object.values(this.receive[i])
+						let tep={content:"",
+							  youranswer:"",
+							  rightanswer:""}
+						tep.content=arr[0]
+						tep.youranswer=arr[1]
+						tep.rightanswer=arr[2]
+						this.display.push(tep)
+						
+						
+					}
+					console.log(this.display[0])
+					
+				  },
+				  fail: err => {
+				    console.log("fail")
+				  }
+				}) 
+			}
 		}
 	}
 </script>

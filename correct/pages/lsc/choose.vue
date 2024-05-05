@@ -81,7 +81,7 @@
 		
 		data(){
 			return{
-				value2:1,
+				value2:3,
 				grade:[{value:1,text:"一年级上"},
 				{value:2,text:"一年级下"},
 				{value:3,text:"二年级上"},
@@ -176,7 +176,7 @@
 		computed:{
 			questions:{
 				get: function(){
-					return this.dis[5]
+					return this.dis[this.value2-1]
 				}
 				
 			}

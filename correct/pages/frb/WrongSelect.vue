@@ -119,8 +119,8 @@
 			  },
 			  data: {
 					"userId": 1234,
-			       "gradeId":this.$route.query.grade,
-			       "quesId":this.$route.query.id,
+			       "gradeId":1,
+
 			       
 				   "type":3
 			  }, 

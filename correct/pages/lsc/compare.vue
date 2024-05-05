@@ -50,7 +50,7 @@
 			}
 		},
 		onLoad(option) {
-			console.log(this.$route.query.num)
+			console.log(this.$route.query.grade)
 		uni.request({
 		  url: 'http://localhost:8080/exercise',
 		  method: 'POST',
