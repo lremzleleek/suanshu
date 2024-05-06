@@ -1,5 +1,6 @@
 package com.calculator.pojo.question;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,7 @@ public class MixCom extends AllQues{
     private int num1;
     private String symbol1;      //原为symbol
     private int num2;
+    @JsonProperty("result")
     private String symbol2;   //比较符号
     private int num3;
     private String symbol3;

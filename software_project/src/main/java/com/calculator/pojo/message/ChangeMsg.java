@@ -8,8 +8,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ChangeMsg {
-    private int userId;
+    private int userId;   //可以为空
     private int gradeId;
     private int quesId;
+    private int id;
     private int type;
 }

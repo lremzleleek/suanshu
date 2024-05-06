@@ -23,5 +23,22 @@ public class FindController {
         List<Object> list=findJudgeService.find(findMsg);
         return Result.success(list);
     }
-
 }
+
+//{
+//        "userId": 1234,
+//        "list":[
+//        {
+//        "gradeId":1,    //年级id
+//        "quesId":1,     //题型id
+//        "id":13,        //题目id
+//        "type":1        //
+//        },
+//        {
+//        "gradeId":1,
+//        "quesId":1,
+//        "id":22,
+//        "type":1
+//        }
+//        ]
+//        }

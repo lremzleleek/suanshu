@@ -5,7 +5,7 @@
 <mapper namespace="com.calculator.mapper.ChangeMapper">
     <update id="change">
         update userques set accuracy=1
-        where userId=#{userId} and gradeId=#{gradeId} and type=#{type} and accuracy=0
+        where userId=#{userId} and gradeId=#{gradeId} and quesId=#{quesId} and  titleId=#{id} and type=#{type} and accuracy=0
     </update>
 
 

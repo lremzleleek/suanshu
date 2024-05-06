@@ -49,27 +49,48 @@ public class FindService {
         List<UserQues> listAll = findAllMapper.findAllByUserId(findMsg);
         System.out.println(listAll);
         for (UserQues userQues : listAll) {
+            AllQues temp;
             AllQues allQues = typeSearch.typeSearch(userQues.getGradeId(), userQues.getQuesId());
             if (allQues instanceof Compare) {
-                quesList.add(compareService.findCom(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId()));
+                temp=compareService.findCom(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId());
+                temp.setUserResult(userQues.getUserResult());
+                quesList.add(temp);
             } else if (allQues instanceof DualAdd) {
-                quesList.add(dualAddService.findDualAdd(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId()));
+                temp=dualAddService.findDualAdd(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId());
+                temp.setUserResult(userQues.getUserResult());
+                quesList.add(temp);
             } else if (allQues instanceof MixCom) {
-                quesList.add(mixComService.findMixCom(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId()));
+                temp=mixComService.findMixCom(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId());
+                temp.setUserResult(userQues.getUserResult());
+                quesList.add(temp);
             }else if (allQues instanceof DualMul) {
-                quesList.add(dualMulService.findDualMul(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId()));
+                temp=dualMulService.findDualMul(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId());
+                temp.setUserResult(userQues.getUserResult());
+                quesList.add(temp);
             } else if (allQues instanceof FraAdd) {
-                quesList.add(fraAddService.findFraAdd(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId()));
+                temp=fraAddService.findFraAdd(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId());
+                temp.setUserResult(userQues.getUserResult());
+                quesList.add(temp);
             }else if (allQues instanceof FraCom) {
-                quesList.add(fraComService.findFraCom(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId()));
+                temp=fraComService.findFraCom(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId());
+                temp.setUserResult(userQues.getUserResult());
+                quesList.add(temp);
             } else if (allQues instanceof FraMix) {
-                quesList.add( fraMixService.findFraMix(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId()));
+                temp=fraMixService.findFraMix(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId());
+                temp.setUserResult(userQues.getUserResult());
+                quesList.add(temp);
             }else if (allQues instanceof SeqNoPar) {
-                quesList.add( seqNoParService.findSeqNoPar(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId()));
+                temp=seqNoParService.findSeqNoPar(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId());
+                temp.setUserResult(userQues.getUserResult());
+                quesList.add(temp);
             } else if (allQues instanceof SeqWithPar) {
-                quesList.add( seqWithParService.findSeqWithPar(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId()));
+                temp=seqWithParService.findSeqWithPar(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId());
+                temp.setUserResult(userQues.getUserResult());
+                quesList.add(temp);
             }else if(allQues instanceof DeciCom){
-                quesList.add(deciComService.findDeciCom(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId()));
+                temp=deciComService.findDeciCom(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId());
+                temp.setUserResult(userQues.getUserResult());
+                quesList.add(temp);
             }
             else
                 return null;
