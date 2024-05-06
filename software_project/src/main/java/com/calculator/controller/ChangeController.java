@@ -19,7 +19,7 @@ public class ChangeController {
     @Autowired
     private ChangeMapper changeMapper;
 
-    @RequestMapping("change")
+    @RequestMapping("/change")
         public Result change(@RequestBody ChangeInfo changeInfo) {
         boolean flag=true;
         List<ChangeMsg> list=changeInfo.getList();

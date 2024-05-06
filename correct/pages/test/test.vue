@@ -19,7 +19,7 @@
 		</uni-data-select>
 
 	<p style="font-size: 10px;">
-				<button >整理</button>
+				<button @click="changeshow">整理</button>
 	</p>
 
 		</view>
@@ -34,9 +34,11 @@
 			<!-- 表格数据行 -->
 			
 			<uni-tr  v-for="(item,index) in display">
+				
 				<uni-td >{{item.content}}</uni-td>
 				<uni-td>{{item.youranswer}}</uni-td>
 				<uni-td>{{item.rightanswer}}</uni-td>
+				<uni-td v-show="show"><button style="width: 40%;" @click="dele">删除</button></uni-td>
 			</uni-tr>
 			
 		
@@ -56,6 +58,7 @@
 	export default {
 		data() {
 			return {
+				show:false,
 				grade:["一年级上","一年级下","二年级上","二年级下","三年级上","三年级下"],
 				 value1:null,
 				 value2:null,
@@ -119,6 +122,47 @@
 			}) 
 		},
 		methods: {
+			dele(){
+				uni.request({
+				  url: 'http://localhost:8080/find',
+				  method: 'POST',
+				  header: {
+				    'content-type': 'application/json'
+				  },
+				  data: {
+						"userId": 1234,
+				       "gradeId":this.value1,
+					   "type":this.value2
+				  }, 
+				  success: res => {
+				    console.log(res.data)
+					this.display=[null]
+					this.receive=res.data.data
+					this.totalq=this.receive.length
+					
+					for(let i=0; i<this.receive.length;i++){
+						let arr=Object.values(this.receive[i])
+						let tep={content:"",
+							  youranswer:"",
+							  rightanswer:""}
+						tep.content=arr[0]
+						tep.youranswer=arr[1]
+						tep.rightanswer=arr[2]
+						this.display.push(tep)
+						
+						
+					}
+					console.log(this.display[0])
+					
+				  },
+				  fail: err => {
+				    console.log("fail")
+				  }
+				}) 
+			},
+			changeshow(){
+				this.show=!this.show
+			},
 			change(){
 				console.log(this.value1)
 				console.log(this.value2)

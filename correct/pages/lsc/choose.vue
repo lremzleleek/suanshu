@@ -60,6 +60,13 @@
 			},
 			start(index){
 				index=index+1;
+				console.log(this.dis[this.value2][index-1].indexOf("大小"))
+				if(this.dis[this.value2][index-1].indexOf("大小")>=0){
+					this.kind=0
+				}
+				else{
+					this.kind=2
+				}
 				if(this.kind==0){
 					uni.navigateTo({
 						url:"/pages/lsc/compare?grade="+this.value2.toString()+"&num="+this.value.toString()+"&id="+index.toString()
@@ -72,7 +79,7 @@
 				}
 				if(this.kind==2){
 					uni.navigateTo({
-						url:"/pages/lsc/row_cal"
+						url:"/pages/lsc/row_cal?grade="+this.value2.toString()+"&num="+this.value.toString()+"&id="+index.toString()
 					})
 				}
 			
@@ -90,7 +97,7 @@
 				{value:6,text:"三年级下"}],
 				value:10,
 				trans:[1,2],
-				kind:0,
+				kind:2,
 				stage:0,
 				itemStyle:{
 					fontsize:"110px"
