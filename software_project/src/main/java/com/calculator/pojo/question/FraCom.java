@@ -11,9 +11,10 @@ import lombok.NoArgsConstructor;
 public class FraCom extends AllQues{
     private int id;
     private String div1;
-    private String div2;
     @JsonProperty("result")
     private String symbol1;
+    private String div2;
+
 }
 
 // 三（上）分数比大小

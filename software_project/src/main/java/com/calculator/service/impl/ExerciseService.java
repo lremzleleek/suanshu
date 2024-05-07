@@ -2,6 +2,7 @@ package com.calculator.service.impl;
 
 import com.calculator.pojo.message.ExerciseMsg;
 import com.calculator.pojo.question.*;
+import com.calculator.service.util.TypeSearch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -35,7 +36,7 @@ public class ExerciseService {
     public List<?> exercise(ExerciseMsg exerciseMsg)
     {
         List<?>  list;
-        AllQues allQues =TypeSearch.typeSearch(exerciseMsg.getGradeId(),exerciseMsg.getQuesId());
+        AllQues allQues = TypeSearch.typeSearch(exerciseMsg.getGradeId(),exerciseMsg.getQuesId());
         if (allQues instanceof Compare) {
             list=compareService.selectCom(exerciseMsg);
         } else if (allQues instanceof DualAdd) {

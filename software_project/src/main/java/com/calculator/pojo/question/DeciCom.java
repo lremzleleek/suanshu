@@ -11,7 +11,8 @@ import lombok.NoArgsConstructor;
 public class DeciCom extends AllQues{
     private int id;
     private double num1;
-    private double num2;
     @JsonProperty("result")
     private String symbol1;
+    private double num2;
+
 }

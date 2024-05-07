@@ -5,6 +5,8 @@ import com.calculator.mapper.TableSearchMapper;
 import com.calculator.pojo.entity.UserQues;
 import com.calculator.pojo.message.FindMsg;
 import com.calculator.pojo.question.*;
+import com.calculator.service.util.TableSearch;
+import com.calculator.service.util.TypeSearch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

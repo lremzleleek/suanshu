@@ -9,15 +9,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SeqWithPar extends AllQues{
     private int id;
-    private int num1; //10  40
-    private int num2; //2   5
-    private int num3; //1   1
-    private int result; //21   45
     private String symbol1;  //(   null
+    private int num1; //10  40
     private String symbol2;  //*   -
-    private String symbol3;  //)   (
-    private String symbol4;  //+   *
-    private String symbol5;  //null   )
+    private String symbol3;  //null  (
+    private int num2; //2   5
+    private String symbol4;  //)  null
+    private String symbol5;  //+   *
+    private int num3; //1   1
+    private String symbol6;  //null   )
+    private int result; //21   45
+
+
+
+
 }
 //char symbol1	int num1	char symbol2  int num2
 //char symbol2	char symbol3		int num3	char symbol5

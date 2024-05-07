@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 public class DualMul extends AllQues{
     private int id;
     private int num1;
-    private int num2;
     private String symbol1;
+    private int num2;
     private int result;
 }
 

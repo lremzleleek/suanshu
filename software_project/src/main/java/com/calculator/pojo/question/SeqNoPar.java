@@ -10,11 +10,13 @@ import lombok.NoArgsConstructor;
 public class SeqNoPar extends AllQues{
     private int id;
     private int num1;
+    private String symbol1;
     private int num2;
+    private String symbol2;
     private int num3;
     private int result;
-    private String symbol1;
-    private String symbol2;
+
+
 }
 
 //示例：33+2-1=34  10*3-1=29   21÷3*2=14

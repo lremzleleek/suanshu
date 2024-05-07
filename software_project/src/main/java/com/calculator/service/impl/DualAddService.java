@@ -1,11 +1,11 @@
 package com.calculator.service.impl;
 
-import com.calculator.mapper.CompareMapper;
 import com.calculator.mapper.DualAddMapper;
 import com.calculator.mapper.RandomMapper;
 import com.calculator.pojo.message.ExerciseMsg;
-import com.calculator.pojo.question.Compare;
 import com.calculator.pojo.question.DualAdd;
+import com.calculator.service.util.NumberUtil;
+import com.calculator.service.util.TableSearch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +21,11 @@ public class DualAddService{
     private RandomMapper randomMapper;
 
     public List<DualAdd> selectDualAdd(ExerciseMsg exerciseMsg) {
-        String tablename=TableSearch.tableSearch(exerciseMsg.getGradeId(),exerciseMsg.getQuesId());
+        String tablename= TableSearch.tableSearch(exerciseMsg.getGradeId(),exerciseMsg.getQuesId());
         List<DualAdd>  list=new ArrayList<>();
         Integer minNum=randomMapper.getMinNum(tablename);
         Integer maxNum=randomMapper.getMaxNum(tablename);
-        List<Integer> listInt =NumberUtil.randomCommon(minNum,maxNum,exerciseMsg.getQuesNum());
+        List<Integer> listInt = NumberUtil.randomCommon(minNum,maxNum,exerciseMsg.getQuesNum());
 
         for(Integer i: listInt){
             list.add(dualAddMapper.selectDualAdd(tablename,i));

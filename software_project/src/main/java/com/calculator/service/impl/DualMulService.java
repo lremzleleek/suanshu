@@ -3,9 +3,9 @@ package com.calculator.service.impl;
 import com.calculator.mapper.DualMulMapper;
 import com.calculator.mapper.RandomMapper;
 import com.calculator.pojo.message.ExerciseMsg;
-import com.calculator.pojo.question.Compare;
-import com.calculator.pojo.question.DeciCom;
 import com.calculator.pojo.question.DualMul;
+import com.calculator.service.util.NumberUtil;
+import com.calculator.service.util.TableSearch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,11 +22,11 @@ public class DualMulService {
 
 
     public List<DualMul> selectDualMul(ExerciseMsg exerciseMsg) {
-        String tablename=TableSearch.tableSearch(exerciseMsg.getGradeId(),exerciseMsg.getQuesId());
+        String tablename= TableSearch.tableSearch(exerciseMsg.getGradeId(),exerciseMsg.getQuesId());
         List<DualMul>  list=new ArrayList<>();
         Integer minNum=randomMapper.getMinNum(tablename);
         Integer maxNum=randomMapper.getMaxNum(tablename);
-        List<Integer> listInt =NumberUtil.randomCommon(minNum,maxNum,exerciseMsg.getQuesNum());
+        List<Integer> listInt = NumberUtil.randomCommon(minNum,maxNum,exerciseMsg.getQuesNum());
         System.out.println(listInt);
         for(Integer i: listInt){
             list.add(dualMulMapper.selectDualMul(tablename,i));

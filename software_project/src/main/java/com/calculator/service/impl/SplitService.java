@@ -2,14 +2,14 @@ package com.calculator.service.impl;
 
 import com.calculator.mapper.*;
 import com.calculator.pojo.message.ExerciseMsg;
-import com.calculator.pojo.question.SeqWithPar;
+import com.calculator.service.util.NumberUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.calculator.service.impl.SplitUtil.splitIntoParts;
+import static com.calculator.service.util.SplitUtil.splitIntoParts;
 
 @Component
 public class SplitService {
@@ -56,7 +56,7 @@ public class SplitService {
         for(int i=0;i<intList.length;i++){
             Integer minNum=randomMapper.getMinNum(tablename[i]);
             Integer maxNum=randomMapper.getMaxNum(tablename[i]);
-            List<Integer> list=NumberUtil.randomCommon(minNum,maxNum,intList[i]);
+            List<Integer> list= NumberUtil.randomCommon(minNum,maxNum,intList[i]);
             if(tablename[i].equals("hunaddsub")||tablename[i].equals("hunmutandiv")){
                 for (Integer integer : list) alllist.add(seqNoParMapper.selectSeqNoPar(tablename[i], integer));
             }

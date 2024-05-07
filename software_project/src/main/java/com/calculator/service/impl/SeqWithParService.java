@@ -3,9 +3,9 @@ package com.calculator.service.impl;
 import com.calculator.mapper.RandomMapper;
 import com.calculator.mapper.SeqWithParMapper;
 import com.calculator.pojo.message.ExerciseMsg;
-import com.calculator.pojo.question.Compare;
-import com.calculator.pojo.question.FraAdd;
 import com.calculator.pojo.question.SeqWithPar;
+import com.calculator.service.util.NumberUtil;
+import com.calculator.service.util.TableSearch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

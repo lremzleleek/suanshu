@@ -1,6 +1,5 @@
-package com.calculator.service.impl;
+package com.calculator.service.util;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service

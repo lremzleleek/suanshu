@@ -1,6 +1,5 @@
 package com.calculator.mapper;
 
-import com.calculator.pojo.message.InsertAccuMsg;
 import com.calculator.pojo.message.InsertQuesMsg;
 import org.apache.ibatis.annotations.Mapper;
 
