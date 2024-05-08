@@ -11,7 +11,7 @@
 	</ul>
 	
 	<view class="current_ques">
-		10 - 9 = {{dis}}
+		{{dis1}} = {{dis}}
 	</view>
 
 	<view class="cal_n_right">
@@ -43,15 +43,16 @@
 	</ul>
 	<ul class="right">
 		<!-- <li class="right_button">提示</li> -->
-		<li class="right_button" @click="handleClick">确定</li>
+		<li class="right_button" @click="compare() ">确定</li>
 	</ul>
 	</view>
 	
 	<view class="game">
-		<img src="../../static/闹钟.png" alt="???" />
+		<img src="../../static/fire.jpeg" alt="???" />
 		<!-- <embed src="../../static/success.MP4" height="360rpx" width="100%"/> -->
-		<div :class="animate">hello world</div>
-		<img src="../../static/闹钟.png" alt="???" />
+		<img :class="animate" src="../../static/boom.jpg" alt="111" />
+		<!-- <div :class="animate"><img src="../../static/boom.jpg" alt="111" /></div> -->
+		<img src="../../static/goblin.jpg" alt="???" />
 		<div :class="damage">-10</div>
 	</view>
 	
@@ -62,15 +63,20 @@
 		data(){
 			return{
 				countdown:60,
-				dis:"2",
+				dis:"",
+				dis1:"",
+				index:0,
+				discontent:[],//展现在屏幕上的第一个问题
+				answerlist:[],//用户回答的结果
+				correct:[],//用户的答案正确与否
 				score:0,
 				damage:{
-					transition: true,
+					transition: false,
 					before:true,
 					after:false
 				},
 				animate: {
-				        transition: true,
+				        transition: false,
 				        green: true,
 				        pink: false,
 						left:0
@@ -79,20 +85,64 @@
 			}
 		},
 		onLoad() {
-			this.countdown = 10; //赋值3秒
-			// const times = setInterval(() => {
-			//   this.countdown--; //递减
-			//   if (this.countdown === 0) {
-			//     // === 0 变成获取按钮
-			//     alert("答题完毕")
-			//     uni.switchTab({
-			//     	url:"/pages/frb/homepage"
-			//     })
-			//   }
-			// }, 1000);
+			this.countdown = 10; 
+			const times = setInterval(() => {
+			  this.countdown--; //递减
+			  if (this.countdown === 0) {
+			    // === 0 变成获取按钮
+				let d=this.score*10
+			    alert("答题完毕,你对怪物造成了"+d.toString()+"伤害")
+			    uni.switchTab({
+			    	url:"/pages/frb/homepage"
+			    })
+			  }
+			}, 1000);
+			uni.request({
+			  url: 'http://localhost:8080/exercise',
+			  method: 'POST',
+			  header: {
+			    'content-type': 'application/json'
+			  },
+			  data: {
+					"userId": 1234,
+			       "gradeId":2,
+			       "quesId":2,
+			       "quesNum":200,
+				   // "gradeId":1,
+				   // "quesId":2,
+				   // "quesNum":3
+			  },
+			  success: res => {
+			    console.log(res.data)
+				this.receive=res.data.data
+				this.totalq=this.receive.length
+				
+				//把数据整理好放到本地
+				for(let i=0; i<this.receive.length;i++){
+					// let arr=Object.values(this.receive[i])
+					let tep=""
+					tep+=this.receive[i].num1.toString()
+					tep+=this.receive[i].symbol1.toString()
+					tep+=this.receive[i].num2.toString()
+					// for(let j=1;j<arr.length-1;j++){
+					// 	tep+=j.toString()
+					this.discontent.push(tep)
+					}
+					 console.log(this.discontent)
+					 this.dis1=this.discontent[this.index]
+					 console.log(this.dis1)
+				},
+				
+				fail: err => {
+				  console.log("fail")
+				
+			  }
+			 
+			}) 
 		},
 		methods:{
 			 compare(){
+				
 				 console.log(this.answerlist)
 				 this.answerlist.push(this.dis)
 				 if(this.index>=this.totalq-1){
@@ -134,9 +184,38 @@
 				 	    console.log("fail")
 				 	  }
 				 	}) 
-			 }},
+					
+					
+			 }
+			 this.index=this.index+1;
+			 
+			 this.dis1=this.discontent[this.index]	 
+			 // console.log(this.receive[this.index-1].result)
+			 if(this.dis==this.receive[this.index-1].result){
+			 	alert("回答正确")
+			 	this.score+=1
+			 	this.correct.push(1)
+				this.handleClick()
+				 setTimeout(this.handleClick,2000)
+				   
+				        // clearInterval(interval);
+				   
+				    // // display the current time
+				    // let dateTime= new Date();
+				    // let time = dateTime.toLocaleTimeString();
+				    // console.log(time);
+				
+				
+			 }
+			 else{
+			 	alert("错了，正确答案是"+this.receive[this.index-1].result)
+			 	this.correct.push(0)
+			 }
+			this.dis=""
+			 },
 			handleClick() {
 			      this.animate.green = !this.animate.green
+				  this.animate.transition = !this.animate.transition
 			      this.animate.pink = !this.animate.pink
 				  this.damage.before=!this.damage.before
 				  this.damage.after=!this.damage.after
@@ -205,16 +284,20 @@
 	.pink {
 	  background-color: pink;
 	  width: 100px;
-	  height: 50px;
+	  top:50px;
+	  height: 80px;
 	  position: relative;
-	  left: -100px;
+	  left: 100px;
+	 
 	}
 	.green {
 	  background-color: yellow;
 	  width: 100px;
-	  height: 50px;
+	  height: 80px;
 	   position: relative;
-	  left: 100px;
+	   top:50px;
+	  left: -100px;
+	  visibility: hidden;
 	}
 	.transition {
 	  transition: 0.5s ease;

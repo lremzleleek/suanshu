@@ -65,7 +65,10 @@
 			}
 		},
 		onLoad(option) {
+			console.log("年级是")
 			console.log(this.$route.query.grade)
+			console.log(this.$route.query.id)
+			console.log(this.$route.query.num)
 		uni.request({
 		  url: 'http://localhost:8080/exercise',
 		  method: 'POST',
