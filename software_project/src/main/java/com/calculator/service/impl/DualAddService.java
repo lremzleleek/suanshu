@@ -28,7 +28,11 @@ public class DualAddService{
         List<Integer> listInt = NumberUtil.randomCommon(minNum,maxNum,exerciseMsg.getQuesNum());
 
         for(Integer i: listInt){
-            list.add(dualAddMapper.selectDualAdd(tablename,i));
+            DualAdd temp;
+            temp=dualAddMapper.selectDualAdd(tablename,i);
+            temp.setGradeId(exerciseMsg.getGradeId());
+            temp.setQuesId(exerciseMsg.getQuesId());
+            list.add(temp);
         }
 
         return list;

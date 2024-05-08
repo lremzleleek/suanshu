@@ -3,6 +3,7 @@ package com.calculator.service.impl;
 import com.calculator.mapper.CompareMapper;
 import com.calculator.mapper.RandomMapper;
 import com.calculator.pojo.message.ExerciseMsg;
+import com.calculator.pojo.question.AllQues;
 import com.calculator.pojo.question.Compare;
 import com.calculator.service.util.NumberUtil;
 import com.calculator.service.util.TableSearch;
@@ -28,7 +29,11 @@ public class CompareService {
         List<Integer> listInt = NumberUtil.randomCommon(minNum,maxNum,exerciseMsg.getQuesNum());
         System.out.println(listInt);
         for(Integer i: listInt){
-            list.add(compareMapper.selectCom(tablename,i));
+            Compare temp;
+            temp=compareMapper.selectCom(tablename,i);
+            temp.setGradeId(exerciseMsg.getGradeId());
+            temp.setQuesId(exerciseMsg.getQuesId());
+            list.add(temp);
         }
 
         return list;

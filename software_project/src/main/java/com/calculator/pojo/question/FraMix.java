@@ -1,5 +1,6 @@
 package com.calculator.pojo.question;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonPropertyOrder({"id", "div1","symbol1" ,"div2","symbol2","div3","symbol3","div4"})
 public class FraMix extends AllQues{
     private int id;
     private String div1;

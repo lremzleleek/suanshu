@@ -28,7 +28,11 @@ public class FraComService{
         List<Integer> listInt = NumberUtil.randomCommon(minNum,maxNum,exerciseMsg.getQuesNum());
         System.out.println(listInt);
         for(Integer i: listInt){
-            list.add(fraComMapper.selectFraCom(tablename,i));
+            FraCom temp;
+            temp=fraComMapper.selectFraCom(tablename,i);
+            temp.setGradeId(exerciseMsg.getGradeId());
+            temp.setQuesId(exerciseMsg.getQuesId());
+            list.add(temp);
         }
 
         return list;

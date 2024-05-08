@@ -28,7 +28,11 @@ public class FraMixService{
         List<Integer> listInt = NumberUtil.randomCommon(minNum,maxNum,exerciseMsg.getQuesNum());
         System.out.println(listInt);
         for(Integer i: listInt){
-            list.add(fraMixMapper.selectFraMix(tablename,i));
+            FraMix temp;
+            temp=fraMixMapper.selectFraMix(tablename,i);
+            temp.setGradeId(exerciseMsg.getGradeId());
+            temp.setQuesId(exerciseMsg.getQuesId());
+            list.add(temp);
         }
 
         return list;

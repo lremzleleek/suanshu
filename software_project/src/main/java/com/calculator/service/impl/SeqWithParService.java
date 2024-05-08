@@ -29,7 +29,11 @@ public class SeqWithParService {
         List<Integer> listInt = NumberUtil.randomCommon(minNum, maxNum, exerciseMsg.getQuesNum());
         System.out.println(listInt);
         for (Integer i : listInt) {
-            list.add(seqWithParMapper.selectSeqWithPar(tablename, i));
+            SeqWithPar temp;
+            temp=seqWithParMapper.selectSeqWithPar(tablename, i);
+            temp.setGradeId(exerciseMsg.getGradeId());
+            temp.setQuesId(exerciseMsg.getQuesId());
+            list.add(temp);
         }
 
         return list;

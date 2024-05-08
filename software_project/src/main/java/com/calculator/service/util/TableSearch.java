@@ -71,7 +71,7 @@ public class TableSearch {
                     case 10: return "hunzerotwo";
                     case 11: return "hunzeroone";
                     case 12: return "tenmutone";
-                    case 13: return "tenmuttwo";
+                    case 13: return "tenmutwo";
                     case 14: return null;
                     case 15: return "fenshucom";
                     case 16: return "fenshuadd";
@@ -82,10 +82,10 @@ public class TableSearch {
             case 6:{
                 switch (quesId) {
                     case 1: return "tendivone";
-                    case 2: return "hunzdiveone";
-                    case 3: return "hundiveone";
-                    case 4: return "hundiveonez";
-                    case 5: return "hundiveonezz";
+                    case 2: return "hunzdivone";
+                    case 3: return "hundivone";
+                    case 4: return "hundivonez";
+                    case 5: return "hundivonezz";
                     case 6: return null;
                     case 7: return "xiaoshu";
                     default: throw new IllegalArgumentException("Invalid quesId for the specified cases");

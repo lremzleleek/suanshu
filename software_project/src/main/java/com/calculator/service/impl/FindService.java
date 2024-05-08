@@ -55,47 +55,35 @@ public class FindService {
             AllQues allQues = typeSearch.typeSearch(userQues.getGradeId(), userQues.getQuesId());
             if (allQues instanceof Compare) {
                 temp=compareService.findCom(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId());
-                temp.setUserResult(userQues.getUserResult());
-                quesList.add(temp);
             } else if (allQues instanceof DualAdd) {
                 temp=dualAddService.findDualAdd(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId());
-                temp.setUserResult(userQues.getUserResult());
-                quesList.add(temp);
             } else if (allQues instanceof MixCom) {
                 temp=mixComService.findMixCom(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId());
-                temp.setUserResult(userQues.getUserResult());
-                quesList.add(temp);
             }else if (allQues instanceof DualMul) {
                 temp=dualMulService.findDualMul(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId());
-                temp.setUserResult(userQues.getUserResult());
-                quesList.add(temp);
             } else if (allQues instanceof FraAdd) {
                 temp=fraAddService.findFraAdd(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId());
-                temp.setUserResult(userQues.getUserResult());
-                quesList.add(temp);
             }else if (allQues instanceof FraCom) {
                 temp=fraComService.findFraCom(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId());
-                temp.setUserResult(userQues.getUserResult());
-                quesList.add(temp);
+
             } else if (allQues instanceof FraMix) {
                 temp=fraMixService.findFraMix(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId());
-                temp.setUserResult(userQues.getUserResult());
-                quesList.add(temp);
+
             }else if (allQues instanceof SeqNoPar) {
                 temp=seqNoParService.findSeqNoPar(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId());
-                temp.setUserResult(userQues.getUserResult());
-                quesList.add(temp);
+
             } else if (allQues instanceof SeqWithPar) {
                 temp=seqWithParService.findSeqWithPar(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId());
-                temp.setUserResult(userQues.getUserResult());
-                quesList.add(temp);
+
             }else if(allQues instanceof DeciCom){
                 temp=deciComService.findDeciCom(userQues.getGradeId(),userQues.getQuesId(),userQues.getTitleId());
-                temp.setUserResult(userQues.getUserResult());
-                quesList.add(temp);
             }
             else
                 return null;
+            temp.setUserResult(userQues.getUserResult());
+            temp.setGradeId(userQues.getGradeId());
+            temp.setQuesId(userQues.getQuesId());
+            quesList.add(temp);
         }
 
         return quesList;

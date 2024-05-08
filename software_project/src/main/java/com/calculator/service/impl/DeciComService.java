@@ -29,7 +29,11 @@ public class DeciComService{
         List<Integer> listInt = NumberUtil.randomCommon(minNum,maxNum,exerciseMsg.getQuesNum());
         System.out.println(listInt);
         for(Integer i: listInt){
-            list.add(deciComMapper.selectDeciCom(tablename,i));
+            DeciCom temp;
+            temp=deciComMapper.selectDeciCom(tablename,i);
+            temp.setGradeId(exerciseMsg.getGradeId());
+            temp.setQuesId(exerciseMsg.getQuesId());
+            list.add(temp);
         }
 
         return list;

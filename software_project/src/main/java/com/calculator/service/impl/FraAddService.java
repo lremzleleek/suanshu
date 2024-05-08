@@ -29,7 +29,11 @@ public class FraAddService{
         List<Integer> listInt = NumberUtil.randomCommon(minNum,maxNum,exerciseMsg.getQuesNum());
         System.out.println(listInt);
         for(Integer i: listInt){
-            list.add(fraAddMapper.selectFraAdd(tablename,i));
+            FraAdd temp;
+            temp=fraAddMapper.selectFraAdd(tablename,i);
+            temp.setGradeId(exerciseMsg.getGradeId());
+            temp.setQuesId(exerciseMsg.getQuesId());
+            list.add(temp);
         }
 
         return list;

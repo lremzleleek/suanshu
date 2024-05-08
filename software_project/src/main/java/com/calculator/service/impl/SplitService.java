@@ -2,6 +2,10 @@ package com.calculator.service.impl;
 
 import com.calculator.mapper.*;
 import com.calculator.pojo.message.ExerciseMsg;
+import com.calculator.pojo.question.DualAdd;
+import com.calculator.pojo.question.DualMul;
+import com.calculator.pojo.question.SeqNoPar;
+import com.calculator.pojo.question.SeqWithPar;
 import com.calculator.service.util.NumberUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -38,10 +42,10 @@ public class SplitService {
             tablename[2]="hunmutandiv";tablename[3]="hunmutandivkuohao";
                 break;
             case 5: tablename[0]="hunzerotwo";tablename[1]="hunzeroone";
-                tablename[2]="tenmutone";tablename[3]="tenmuttwo";
+                tablename[2]="tenmutone";tablename[3]="tenmutwo";
                 break;
-            case 6: tablename[0]="tendivone";tablename[1]="hunzdiveone";
-                tablename[2]="hundiveone";
+            case 6: tablename[0]="tendivone";tablename[1]="hunzdivone";
+                tablename[2]="hundivone";
                 break;
             default:return null;
         }
@@ -58,18 +62,40 @@ public class SplitService {
             Integer maxNum=randomMapper.getMaxNum(tablename[i]);
             List<Integer> list= NumberUtil.randomCommon(minNum,maxNum,intList[i]);
             if(tablename[i].equals("hunaddsub")||tablename[i].equals("hunmutandiv")){
-                for (Integer integer : list) alllist.add(seqNoParMapper.selectSeqNoPar(tablename[i], integer));
+                for (Integer integer : list) {
+                    SeqNoPar temp;
+                    temp=seqNoParMapper.selectSeqNoPar(tablename[i], integer);
+                    temp.setGradeId(exerciseMsg.getGradeId());
+                    temp.setQuesId(exerciseMsg.getQuesId());
+                    alllist.add(temp);
+                }
             }
             else if(tablename[i].equals("hunaskuohao")||tablename[i].equals("hunmutandivkuohao")){
-                for (Integer integer : list) alllist.add(seqWithParMapper.selectSeqWithPar(tablename[i], integer));
+                for (Integer integer : list) {
+                    SeqWithPar temp;
+                    temp=seqWithParMapper.selectSeqWithPar(tablename[i], integer);
+                    temp.setGradeId(exerciseMsg.getGradeId());
+                    temp.setQuesId(exerciseMsg.getQuesId());
+                    alllist.add(temp);
+                }
             }
             else if(exerciseMsg.getGradeId()==1||exerciseMsg.getGradeId()==2){
                 for (Integer integer : list) {
-                    alllist.add(dualAddMapper.selectDualAdd(tablename[i], integer));
+                    DualAdd temp;
+                    temp=dualAddMapper.selectDualAdd(tablename[i], integer);
+                    temp.setGradeId(exerciseMsg.getGradeId());
+                    temp.setQuesId(exerciseMsg.getQuesId());
+                    alllist.add(temp);
                 }
             }
             else if(exerciseMsg.getGradeId()==5||exerciseMsg.getGradeId()==6){
-                    for (Integer integer : list) alllist.add(dualMulMapper.selectDualMul(tablename[i], integer));
+                    for (Integer integer : list) {
+                        DualMul temp;
+                        temp=dualMulMapper.selectDualMul(tablename[i], integer);
+                        temp.setGradeId(exerciseMsg.getGradeId());
+                        temp.setQuesId(exerciseMsg.getQuesId());
+                        alllist.add(temp);
+                    }
             }
         }
         return alllist;

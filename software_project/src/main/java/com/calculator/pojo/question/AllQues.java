@@ -10,4 +10,6 @@ import lombok.NoArgsConstructor;
 public class AllQues {
     private int id;
     private String userResult;
+    private int gradeId;
+    private int quesId;
 }

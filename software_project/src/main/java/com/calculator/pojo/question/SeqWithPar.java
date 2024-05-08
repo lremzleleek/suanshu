@@ -1,5 +1,6 @@
 package com.calculator.pojo.question;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonPropertyOrder({"id", "symbol1","num1","symbol2" ,"symbol3" ,"num2","symbol4" ,"symbol5" ,"num3" ,"symbol6" ,"result"})
 public class SeqWithPar extends AllQues{
     private int id;
     private String symbol1;  //(   null
