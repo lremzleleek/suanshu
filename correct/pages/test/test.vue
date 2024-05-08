@@ -38,7 +38,7 @@
 				<uni-td >{{item.content}}</uni-td>
 				<uni-td>{{item.youranswer}}</uni-td>
 				<uni-td>{{item.rightanswer}}</uni-td>
-				<uni-td v-show="show"><button style="width: 40%;" @click="dele">删除</button></uni-td>
+				<uni-td v-show="show"><button style="width: 40%;" @click="dele(index)">删除</button></uni-td>
 			</uni-tr>
 			
 		
@@ -106,9 +106,14 @@
 					let tep={content:"",
 						  youranswer:"",
 						  rightanswer:""}
-					tep.content=arr[0]
+				// for(let i=1; i<this.receive.length-1;i++){
+				// 	tep.content+=arr[i].num1.toString()
+				// }
+					tep.content+=this.receive[i].num1.toString()
+					tep.content+="O"
+					tep.content+=this.receive[i].num2.toString()
 					tep.youranswer=arr[1]
-					tep.rightanswer=arr[2]
+					tep.rightanswer=arr[arr.length-1]
 					this.display.push(tep)
 					
 		
@@ -122,36 +127,40 @@
 			}) 
 		},
 		methods: {
-			dele(){
+			dele(index){
 				uni.request({
-				  url: 'http://localhost:8080/find',
+				  url: 'http://localhost:8080/change',
 				  method: 'POST',
 				  header: {
 				    'content-type': 'application/json'
 				  },
 				  data: {
 						"userId": 1234,
-				       "gradeId":this.value1,
+				    //    "gradeId":this.value1,
+					   // "quesId":this.recieve[index].id,
+					   // "type":this.value2,
+					   "gradeId":this.value1,
+					   "quesId":20,
 					   "type":this.value2
 				  }, 
 				  success: res => {
 				    console.log(res.data)
-					this.display=[null]
-					this.receive=res.data.data
-					this.totalq=this.receive.length
+					// this.display=[null]
+					// this.receive=res.data.data
+					// this.totalq=this.receive.length
 					
-					for(let i=0; i<this.receive.length;i++){
-						let arr=Object.values(this.receive[i])
-						let tep={content:"",
-							  youranswer:"",
-							  rightanswer:""}
-						tep.content=arr[0]
-						tep.youranswer=arr[1]
-						tep.rightanswer=arr[2]
-						this.display.push(tep)
+					// for(let i=0; i<this.receive.length;i++){
+					// 	let arr=Object.values(this.receive[i])
+					// 	let tep={content:"",
+					// 		  youranswer:"",
+					// 		  rightanswer:""}
+					// 	tep.content=arr[0]
+					// 	tep.youranswer=arr[1]
+					// 	tep.rightanswer=arr[2]
+					// 	this.display.push(tep)
 						
 						
-					}
+					
 					console.log(this.display[0])
 					
 				  },
