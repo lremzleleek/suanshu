@@ -85,6 +85,7 @@
 			}
 		},
 		onLoad() {
+			
 			uni.request({
 			  url: 'http://localhost:8080/find',
 			  method: 'POST',
@@ -106,14 +107,15 @@
 					let tep={content:"",
 						  youranswer:"",
 						  rightanswer:""}
-				// for(let i=1; i<this.receive.length-1;i++){
-				// 	tep.content+=arr[i].num1.toString()
-				// }
-					tep.content+=this.receive[i].num1.toString()
-					tep.content+="O"
-					tep.content+=this.receive[i].num2.toString()
-					tep.youranswer=arr[1]
-					tep.rightanswer=arr[arr.length-1]
+						  // console.log(arr)
+				for(let j=1; j<arr.length-3;j++){
+					tep.content+=arr[j].toString()
+				}
+					// tep.content+=this.receive[i].num1.toString()
+					// tep.content+="O"
+					// tep.content+=this.receive[i].num2.toString()
+					tep.youranswer=this.receive[i].userResult
+					tep.rightanswer=this.receive[i].result
 					this.display.push(tep)
 					
 		
@@ -127,6 +129,7 @@
 			}) 
 		},
 		methods: {
+
 			dele(index){
 				uni.request({
 				  url: 'http://localhost:8080/change',
@@ -136,15 +139,23 @@
 				  },
 				  data: {
 						"userId": 1234,
+						"list":[
+							{
+								"gradeId":this.receive[index].gradeId,
+								"quesId":this.receive[index].quesId,
+								"id":this.receive[index].id,
+								"type":3
+							}
+						]
 				    //    "gradeId":this.value1,
 					   // "quesId":this.recieve[index].id,
 					   // "type":this.value2,
-					   "gradeId":this.value1,
-					   "quesId":20,
-					   "type":this.value2
+					   
 				  }, 
 				  success: res => {
 				    console.log(res.data)
+					location.reload();
+
 					// this.display=[null]
 					// this.receive=res.data.data
 					// this.totalq=this.receive.length

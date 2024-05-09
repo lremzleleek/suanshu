@@ -60,8 +60,8 @@
 			},
 			start(index){
 				index=index+1;
-				console.log(this.dis[this.value2][index-1].indexOf("大"))
-				if(this.dis[this.value2][index-1].indexOf("大")>=0){
+				console.log(this.dis[this.value2-1])
+				if(this.dis[this.value2-1][index-1].indexOf("大")>=0){
 					this.kind=0
 				}
 				else{
