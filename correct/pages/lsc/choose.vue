@@ -64,6 +64,9 @@
 				if(this.dis[this.value2-1][index-1].indexOf("大")>=0){
 					this.kind=0
 				}
+				if(this.dis[this.value2-1][index-1].indexOf("混合")>=0){
+					this.kind=1
+				}
 				else{
 					this.kind=2
 				}
@@ -74,7 +77,7 @@
 				}
 				if(this.kind==1){
 					uni.navigateTo({
-						url:"/pages/lsc/colomn_cal"
+						url:"/pages/lsc/mix?grade="+this.value2.toString()+"&num="+this.value.toString()+"&id="+index.toString()
 					})
 				}
 				if(this.kind==2){

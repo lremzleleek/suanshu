@@ -11,10 +11,7 @@
 			<span style="color: #eec866">——</span> 备选头像框 <span style="color: #eec866">——</span>
 		</view>
 		<view class="box">
-			<img  src="../../static/logo.png" alt="" />
-			<img  src="../../static/logo.png" alt="" />
-			<img  src="../../static/logo.png" alt="" />
-			<img  src="../../static/logo.png" alt="" />
+			
 			<view v-for="(item,index) in dis">
 				
 				

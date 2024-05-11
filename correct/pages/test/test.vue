@@ -107,9 +107,24 @@
 						  youranswer:"",
 						  rightanswer:""}
 						  // console.log(arr)
-				for(let j=1; j<arr.length-3;j++){
-					tep.content+=arr[j].toString()
+				if(typeof(this.receive[i].result)=="string"){
+					for(let j=1; j<arr.length-3;j++){
+						tep.content+=arr[j].toString()
+					}
 				}
+				else if(this.receive[i].gradeId==4){
+					for(let j=4; j<arr.length-1;j++){
+						tep.content+=arr[j].toString()
+					}
+					
+				}
+				else{
+					for(let j=1; j<arr.length-4;j++){
+						tep.content+=arr[j].toString()
+					}
+					
+				}
+				
 					// tep.content+=this.receive[i].num1.toString()
 					// tep.content+="O"
 					// tep.content+=this.receive[i].num2.toString()

@@ -79,7 +79,7 @@
 			}
 		},
 		{
-			"path": "pages/lsc/colomn_cal",
+			"path": "pages/lsc/mix",
 			"style": {
 				"navigationBarTitleText": ""
 			}
@@ -95,12 +95,8 @@
 			"style": {
 				"navigationBarTitleText": ""
 			}
-		},
-		{
-			"path": "pages/lsc/boom",
-			"style": {
-				"navigationBarTitleText": ""
-			}
+		}
+
 		}
 		
 		
@@ -134,7 +130,7 @@
 			"pagePath": "pages/frb/myself",
 			"iconPath": "",
 			"selectedIconPath": "",
-			"text": "组件"
+			"text": "我的"
 		}
 		]
 	},
