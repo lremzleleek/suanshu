@@ -68,15 +68,14 @@
 				        { value: 2, text: "二年级上" },
 						{ value: 3, text: "二年级下" },
 						{ value: 4, text: "三年级上" },
-						{ value: 5, text: "三年级下" }
+						{ value: 5, text: "三年级下" },
+						{value:null,text:"全部"}
 				      ],
 					  type: [
 					    { value: 0, text: "简单计算" },
 					    { value: 1, text: "比大小" },
 					    { value: 2, text: "竖式" },
-					  	{ value: 3, text: "二年级下" },
-					  	{ value: 4, text: "三年级上" },
-					  	{ value: 5, text: "三年级下" }
+					  	{value:null,text:"全部"}
 					  ],
 					  display:[
 						
@@ -94,8 +93,8 @@
 			  },
 			  data: {
 					"userId": 1234,
-			       "gradeId":1,
-				   "type":3
+			       "gradeId":null,
+				   "type":null
 			  }, 
 			  success: res => {
 			    console.log(res.data)
@@ -198,24 +197,50 @@
 					   "type":this.value2
 				  }, 
 				  success: res => {
-				    console.log(res.data)
-					this.display=[null]
-					this.receive=res.data.data
-					this.totalq=this.receive.length
+					  console.log(res.data)
+					  this.display=[null]
+					  this.receive=res.data.data
+					  this.totalq=this.receive.length
+					  
+					  for(let i=0; i<this.receive.length;i++){
+					  	let arr=Object.values(this.receive[i])
+					  	let tep={content:"",
+					  		  youranswer:"",
+					  		  rightanswer:""}
+					  		  // console.log(arr)
+					  for(let j=1; j<arr.length-3;j++){
+					  	tep.content+=arr[j].toString()
+					  }
+					  	// tep.content+=this.receive[i].num1.toString()
+					  	// tep.content+="O"
+					  	// tep.content+=this.receive[i].num2.toString()
+					  	tep.youranswer=this.receive[i].userResult
+					  	tep.rightanswer=this.receive[i].result
+					  	this.display.push(tep)
+					  	
+					  		
+					  }
+					  
+					  
+					  
+				 //    console.log(res.data)
 					
-					for(let i=0; i<this.receive.length;i++){
-						let arr=Object.values(this.receive[i])
-						let tep={content:"",
-							  youranswer:"",
-							  rightanswer:""}
-						tep.content=arr[0]
-						tep.youranswer=arr[1]
-						tep.rightanswer=arr[2]
-						this.display.push(tep)
+					// this.receive=res.data.data
+					// this.totalq=this.receive.length
+					
+					// for(let i=0; i<this.receive.length;i++){
+					// 	let arr=Object.values(this.receive[i])
+					// 	let tep={content:"",
+					// 		  youranswer:"",
+					// 		  rightanswer:""}
+					// 	tep.content=arr[0]
+					// 	tep.youranswer=arr[1]
+					// 	tep.rightanswer=arr[2]
+					// 	this.display.push(tep)
 						
 						
-					}
-					console.log(this.display[0])
+					// }
+					// console.log(this.display[0])
 					
 				  },
 				  fail: err => {

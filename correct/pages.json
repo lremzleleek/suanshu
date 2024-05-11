@@ -121,19 +121,19 @@
 		"backgroundColor": "#ffffff",
 		"list": [{
 			"pagePath": "pages/frb/homepage",
-			"iconPath": "static/iogo.png",
-			"selectedIconPath": "static/logo.png",
+			"iconPath": "",
+			"selectedIconPath": "",
 			"text": "首页"
 		}, {
 			"pagePath": "pages/test/test",
-			"iconPath": "static/iogo.png",
-			"selectedIconPath": "static/logo.png",
+			"iconPath": "",
+			"selectedIconPath": "",
 			"text": "错题本"
 		},
 		{
 			"pagePath": "pages/frb/myself",
-			"iconPath": "static/iogo.png",
-			"selectedIconPath": "static/logo.png",
+			"iconPath": "",
+			"selectedIconPath": "",
 			"text": "组件"
 		}
 		]

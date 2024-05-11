@@ -85,8 +85,9 @@
 
 <style>
 	body{/*  */
-		/* background-color: blue; */
-	background-image: url(../../static/cat.png)
+		
+background: linear-gradient(to top right,  rgb(144, 240, 175),rgb(237, 238, 139));
+
 	
 	}
 .div5 {
@@ -120,7 +121,7 @@
     left: -10px;
     right: -10px;
     bottom: -10px;
-    border: 2px solid #ffd700;
+    border: 4px solid #1ecbff;
     border-radius: 10px;
     animation: div5Ani 3s infinite linear;
 
@@ -156,7 +157,7 @@
         position: absolute;
         width: 100%;
         height: 100%;
-        border:3px solid #eec866;
+        border:px solid #eec866;
         margin: 100px;
       }
       .horn>div{
@@ -164,7 +165,7 @@
         height: 10px;
         position:absolute;
       }
-      .horn .lt{
+      /* .horn .lt{
 		 
         border-top: 6px solid #eec866;
         border-left: 6px solid #eec866;
@@ -188,7 +189,7 @@
         border-left: 6px solid #eec866;
         left: -6px;
         bottom: -6px;
-      }
+      } */
 
 
 	
