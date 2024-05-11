@@ -22,7 +22,7 @@
 	</ul> -->
 
 <view  class="outercontainer" >
-	<uni-collapse :item-style="itemStyle" v-for="(item,index) in questions" class="out">
+	<uni-collapse :item-style="itemStyle" v-for="(item,index) in questions" class="out" v-show="!(index==2||index==4&&this.value2==4)">
 				
 				<uni-collapse-item :title="item" >
 					
@@ -53,6 +53,10 @@
 	export default{
 		mounted(){
 			console.log(this.questions)
+			if(this.value2==4&&this.index==1){
+				alert(1)
+				this.show=false
+			}
 		},
 		methods:{
 			change(e){
@@ -91,7 +95,8 @@
 		
 		data(){
 			return{
-				value2:3,
+				value2:4,
+				show:true,
 				grade:[{value:1,text:"一年级上"},
 				{value:2,text:"一年级下"},
 				{value:3,text:"二年级上"},
@@ -103,7 +108,7 @@
 				kind:2,
 				stage:0,
 				itemStyle:{
-					fontsize:"110px"
+					
 				},
 				range:[
 				        { value: 10, text: "10" },
@@ -150,7 +155,7 @@
 ,"100加减混合运算（有括号）"
 ,"100乘除混合运算（无括号）"
 ,"100乘除混合运算（有括号）"
-,"两级混合运算"
+
 ],
 ["两位数加两位数"
 ,"两位数减两位数"
@@ -187,7 +192,7 @@
 			questions:{
 				get: function(){
 					return this.dis[this.value2-1]
-				}
+				},
 				
 			}
 			
@@ -199,6 +204,9 @@
 	*{
 		padding: 0px;
 		margin: 0px;
+	}
+	.itemstyle{
+		
 	}
 	.uni-collapse-cell__title {
 	                padding: 0;
